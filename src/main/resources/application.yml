@@ -1,0 +1,34 @@
+server:
+  port: ${port:8080}
+
+
+
+spring:
+  application:
+    name: Geonames importer
+
+
+  datasource:
+    url: jdbc:mysql://localhost:3308/shaked?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false&verifyServerCertificate=false&useSSL=false&requireSSL=false&zeroDateTimeBehavior=convertToNull
+
+    username: root
+    password: password
+    sqlScriptEncoding: UTF-8
+
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      dll-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+
+
+
+
+
+
+
+
