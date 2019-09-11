@@ -9,9 +9,7 @@ import java.util.Date;
 
 
 @RestController
-@RequestMapping("/api/articles")
-//@CrossOrigin(origins = "http://10.100.102.20:9090")
-
+@RequestMapping("/articles")
 public class ArticleController {
 
 
@@ -20,7 +18,10 @@ public class ArticleController {
 
 
     @GetMapping
+    @CrossOrigin("${website.cros}")
     public Iterable findAll() {
+
+
         return articleRepository.findAll();
     }
 

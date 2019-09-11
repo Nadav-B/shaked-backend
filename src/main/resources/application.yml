@@ -1,12 +1,17 @@
 server:
-  port: ${port:8080}
-
+  port: ${PORT}
 
 
 spring:
   application:
     name: Geonames importer
 
+  # ==============================================================
+  # = Spring Security / Queries for AuthenticationManagerBuilder
+  # ==============================================================
+  queries:
+    users-query: select email, password, active from user where email=?
+    roles-query: select u.email, r.role from user u inner join user_rol
 
   datasource:
     url: jdbc:mysql://localhost:3308/shaked?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false&verifyServerCertificate=false&useSSL=false&requireSSL=false&zeroDateTimeBehavior=convertToNull
@@ -15,7 +20,14 @@ spring:
     password: password
     sqlScriptEncoding: UTF-8
 
+    testWhileIdle: true
+    validationQuery: SELECT 1
 
+
+
+  # ==============================================================
+  # = Hibernate ddl auto (create, create-drop, update)
+  # ==============================================================
   jpa:
     generate-ddl: true
     hibernate:
@@ -25,10 +37,5 @@ spring:
         format_sql: true
     show-sql: false
 
-
-
-
-
-
-
-
+website:
+  cros: ${WEBSITE_URL}

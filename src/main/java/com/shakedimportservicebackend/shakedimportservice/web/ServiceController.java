@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api/services")
-//@CrossOrigin(origins = "http://10.100.102.20:9090")
+@RequestMapping("/services")
 public class ServiceController {
 
 
@@ -17,6 +16,7 @@ public class ServiceController {
 
 
     @GetMapping
+    @CrossOrigin("${website.cros}")
     public Iterable findAll() {
         return serviceRepository.findAll();
     }
