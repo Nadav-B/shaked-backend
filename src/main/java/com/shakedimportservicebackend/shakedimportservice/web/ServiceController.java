@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/services")
+@CrossOrigin
 public class ServiceController {
 
 
@@ -21,7 +22,7 @@ public class ServiceController {
         return serviceRepository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("addService")
     public Service post(@RequestBody Service service) {
       //  service.setModificationDate(new Date());
         return serviceRepository.save(service);

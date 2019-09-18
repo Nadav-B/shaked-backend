@@ -1,19 +1,17 @@
 package com.shakedimportservicebackend.shakedimportservice.persistence.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.experimental.Tolerate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Contact {
 
     @Id
@@ -21,12 +19,15 @@ public class Contact {
     private long id;
 
     private String fullname;
-
     private String email;
-
     private String phonenumber;
-
     private String address;
+    private Date date;
+private boolean markAsRead;
 
-    private  String date;
+    @Tolerate
+    public  Contact () {
+    }
+
+
 }

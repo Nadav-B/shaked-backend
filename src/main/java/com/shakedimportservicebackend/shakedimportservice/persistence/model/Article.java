@@ -4,10 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -21,10 +18,19 @@ public class Article {
 
     private String title;
 
+    private String tag;
+
+    @Column(columnDefinition="LONGTEXT")
+    private String introduction;
+
     @Column(columnDefinition="LONGTEXT")
     private String content;
 
     private Date modificationDate;
+
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] image;
 
     @Tolerate
     public Article(){}

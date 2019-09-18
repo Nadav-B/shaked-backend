@@ -12,19 +12,21 @@ import javax.persistence.Id;
 
 @Data
 @Builder
-@Entity
 @Component
+@Entity
 public class User {
 
-    @Id
-    @GeneratedValue
-    private long id;
+@Id
+@GeneratedValue
+private long id;
+
     private String userName;
+
     private String password;
 
     @Tolerate
     public User() {
-
     }
+
 
 }
