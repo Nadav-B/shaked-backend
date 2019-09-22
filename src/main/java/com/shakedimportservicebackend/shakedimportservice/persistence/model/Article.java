@@ -20,10 +20,10 @@ public class Article {
 
     private String tag;
 
-    @Column(columnDefinition="LONGTEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String introduction;
 
-    @Column(columnDefinition="LONGTEXT")
+    @Column(columnDefinition = "LONGTEXT")
     private String content;
 
     private Date modificationDate;
@@ -33,8 +33,15 @@ public class Article {
     private byte[] image;
 
     @Tolerate
-    public Article(){}
+    public Article() {
+    }
 
+    public void modifyArticle(Article modifedArticle) {
+        this.setContent(modifedArticle.getContent());
+        this.setTitle(modifedArticle.getTitle());
+        this.setTag(modifedArticle.getTag());
+        this.setIntroduction(modifedArticle.getIntroduction());
+    }
 
 
 }

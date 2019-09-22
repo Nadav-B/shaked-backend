@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Date;
+import java.util.Optional;
 
 
 @RestController
@@ -26,21 +27,43 @@ public class ArticleController {
     }
 
     @PostMapping("addArticle")
+    @CrossOrigin
     public Article post(@RequestBody Article article) {
         article.setModificationDate(new Date());
-        return articleRepository.save(article);
+        articleRepository.save(article);
+        return article;
     }
+
+    @PostMapping("modifyArticle")
+    @CrossOrigin
+    public Article updateArticle(@RequestBody Article article) {
+
+        Optional<Article> articleToModify = articleRepository.findById(article.getId());
+        if (articleToModify.isPresent()) {
+            articleToModify.get().modifyArticle(article);
+            article.setModificationDate(new Date());
+            articleRepository.save(article);
+        }
+        return article;
+
+    }
+
+    @GetMapping("deleteArticle/{id}")
+    @CrossOrigin
+    public void deleteArticle(@PathVariable Long id) {
+        articleRepository.deleteById(id);
+    }
+
 
     @GetMapping("article/{id}")
     @CrossOrigin
-    public Article findById(@PathVariable Long id){
+    public Article findById(@PathVariable Long id) {
         Log.info(id.toString());
 
         return articleRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Unavailable"));
 
     }
-
 
 
 }
