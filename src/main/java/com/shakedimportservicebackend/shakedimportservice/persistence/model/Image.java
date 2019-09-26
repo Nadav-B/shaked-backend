@@ -29,6 +29,8 @@ public class Image {
     @Column(name = "pic")
     private byte[] pic;
 
+
+
     public Image(String name, String type, byte[] pic) {
         this.name = name;
         this.type = type;

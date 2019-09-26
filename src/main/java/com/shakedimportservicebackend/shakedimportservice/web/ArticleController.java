@@ -59,7 +59,6 @@ public class ArticleController {
     @CrossOrigin
     public Article findById(@PathVariable Long id) {
         Log.info(id.toString());
-
         return articleRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Unavailable"));
 
