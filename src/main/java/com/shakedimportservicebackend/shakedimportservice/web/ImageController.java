@@ -30,7 +30,7 @@ public class ImageController {
     }
 
     @GetMapping
-    @CrossOrigin("${website.cros}")
+    @CrossOrigin
     public Iterable findAll() {
         return imageRepository.findAll();
     }
@@ -51,8 +51,7 @@ public class ImageController {
 
     }
 
-    @GetMapping("/deleteImage/{id}")
-    @CrossOrigin
+    @GetMapping("/delete/{id}")
     public void deleteImage(@PathVariable Long id) {
         imageRepository.deleteById(id);
     }

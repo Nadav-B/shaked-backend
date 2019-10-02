@@ -1,29 +1,30 @@
 
 package com.shakedimportservicebackend.shakedimportservice.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
-@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    //allowing unrestricted access to all endpoints.
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors()
-                .and()
+        http
+                .csrf().disable().
+                authorizeRequests()
+                .antMatchers("/articles").permitAll() // Enabling URL to be accessed by all users (even un-authenticated)
+                .antMatchers("/images").permitAll() // Enabling URL to be accessed by all users (even un-authenticated)
+                .antMatchers("images/**").authenticated() // Any resources not mentioned above needs to be authenticated
+                .and().formLogin().loginPage("/login").failureUrl("/login-error");
+    }
 
-                .csrf().disable()
-                /*
-                .authorizeRequests()
-                .antMatchers("/api/articles").hasRole("ADMIN")
-
-                 */
-        ;
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication().withUser("shai").password("shai").roles("ADMIN");
     }
 
 

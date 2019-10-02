@@ -1,7 +1,6 @@
 package com.shakedimportservicebackend.shakedimportservice.web;
 
 import com.shakedimportservicebackend.shakedimportservice.ShakedImportServiceApplication;
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

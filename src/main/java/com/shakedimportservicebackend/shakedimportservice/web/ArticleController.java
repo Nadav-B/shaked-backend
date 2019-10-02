@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/articles")
-@CrossOrigin("${website.cros}")
+@CrossOrigin()
 public class ArticleController {
 
 
@@ -21,7 +21,7 @@ public class ArticleController {
     private ArticleRepository articleRepository;
 
     @GetMapping
-    @CrossOrigin("${website.cros}")
+    @CrossOrigin
     public Iterable findAll() {
         return articleRepository.findAll();
     }
