@@ -26,7 +26,7 @@ public class ArticleController {
         return articleRepository.findAll();
     }
 
-    @PostMapping("addArticle")
+    @PostMapping("insert")
     @CrossOrigin
     public Article post(@RequestBody Article article) {
         article.setModificationDate(new Date());
@@ -34,7 +34,7 @@ public class ArticleController {
         return article;
     }
 
-    @PostMapping("modifyArticle")
+    @PostMapping("update")
     @CrossOrigin
     public Article updateArticle(@RequestBody Article article) {
 
@@ -42,13 +42,13 @@ public class ArticleController {
         if (articleToModify.isPresent()) {
             articleToModify.get().modifyArticle(article);
             article.setModificationDate(new Date());
-            articleRepository.save(article);
+            articleRepository.save(articleToModify.get());
         }
         return article;
 
     }
 
-    @GetMapping("deleteArticle/{id}")
+    @GetMapping("delete/{id}")
     @CrossOrigin
     public void deleteArticle(@PathVariable Long id) {
         articleRepository.deleteById(id);

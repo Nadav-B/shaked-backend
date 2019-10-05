@@ -43,8 +43,7 @@ public class Article {
         this.setTitle(modifedArticle.getTitle());
         this.setTag(modifedArticle.getTag());
         this.setIntroduction(modifedArticle.getIntroduction());
-
+        this.setImageId(modifedArticle.getImageId());
     }
-
 
 }

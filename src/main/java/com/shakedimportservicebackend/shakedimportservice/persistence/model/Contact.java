@@ -23,10 +23,16 @@ public class Contact {
     private String phonenumber;
     private String address;
     private Date date;
-private boolean markAsRead;
+    private String comment;
+    private boolean markAsRead;
 
     @Tolerate
-    public  Contact () {
+    public Contact() {
+    }
+
+    public void modifyContact(Contact modifedContact) {
+        this.setComment(modifedContact.getComment());
+        this.setMarkAsRead(modifedContact.markAsRead);
     }
 
 

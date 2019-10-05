@@ -17,12 +17,12 @@ public class ServiceController {
 
 
     @GetMapping
-    @CrossOrigin("${website.cros}")
+    @CrossOrigin
     public Iterable findAll() {
         return serviceRepository.findAll();
     }
 
-    @PostMapping("addService")
+    @PostMapping("insert")
     public Service post(@RequestBody Service service) {
       //  service.setModificationDate(new Date());
         return serviceRepository.save(service);

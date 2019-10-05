@@ -1,31 +1,36 @@
 package com.shakedimportservicebackend.shakedimportservice.persistence.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.experimental.Tolerate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
 @Data
+@Entity
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class Service {
+public class TextContainer {
 
     @Id
     @GeneratedValue
     private long id;
 
-    private String title;
-
-    private String introduction;
+    private String tag;
 
     @Column(columnDefinition = "LONGTEXT")
     private String content;
+
+
+    @Tolerate
+    public TextContainer() {
+    }
+
+    public void modifyInformation(TextContainer modifedInformation) {
+        this.setTag(modifedInformation.getTag());
+        this.setContent(modifedInformation.getContent());
+    }
 
 }

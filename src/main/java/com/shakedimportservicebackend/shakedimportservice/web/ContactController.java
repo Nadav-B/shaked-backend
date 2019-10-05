@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.Optional;
+import java.util.Set;
 
 
 @RestController
@@ -21,12 +22,23 @@ public class ContactController {
     private ContactRepository contactRepository;
 
     @GetMapping
-    @CrossOrigin("${website.cros}")
+    @CrossOrigin
     public Iterable findAll() {
         return contactRepository.findAll();
     }
 
-    @PostMapping("addContact")
+    @PostMapping
+    @CrossOrigin
+    public boolean saveAllContacts(@RequestBody  Set<Contact> contacts) {
+        try {
+            contactRepository.saveAll(contacts);
+            return true;
+        } catch (Exception e) {
+            return  false;
+        }
+    }
+
+    @PostMapping("insert")
     @CrossOrigin
     public Contact addContact(@RequestBody Contact contact) {
         contact.setDate(new Date());
@@ -34,7 +46,19 @@ public class ContactController {
         return contactRepository.save(contact);
     }
 
-    @GetMapping("deleteContact")
+    @PostMapping("update")
+    @CrossOrigin
+    public Contact updateArticle(@RequestBody Contact contact) {
+        Optional<Contact> contactToModify = contactRepository.findById(contact.getId());
+        if (contactToModify.isPresent()) {
+            contactToModify.get().modifyContact(contact);
+            contactRepository.save(contactToModify.get());
+        }
+        return contact;
+
+    }
+
+    @GetMapping("delete")
     public boolean deleteContact(@RequestBody long id) {
         Optional<Contact> contactToDelete = contactRepository.findById(id);
         if (contactToDelete.isPresent()) {

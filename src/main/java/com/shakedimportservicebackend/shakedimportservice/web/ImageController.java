@@ -40,18 +40,14 @@ public class ImageController {
     public Image uplaodImage(@RequestParam("myFile") MultipartFile file) throws IOException {
 
         Image img = new Image(file.getOriginalFilename(), file.getContentType(), file.getBytes());
-
         final Image savedImage = imageRepository.save(img);
-
         System.out.println("Image saved");
-
-
         return savedImage;
-
 
     }
 
     @GetMapping("/delete/{id}")
+    @CrossOrigin
     public void deleteImage(@PathVariable Long id) {
         imageRepository.deleteById(id);
     }
