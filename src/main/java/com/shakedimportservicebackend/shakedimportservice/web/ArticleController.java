@@ -1,8 +1,8 @@
 package com.shakedimportservicebackend.shakedimportservice.web;
 
-import com.oracle.tools.packager.Log;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Article;
 import com.shakedimportservicebackend.shakedimportservice.repo.ArticleRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +12,9 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/articles")
-@CrossOrigin()
+@RequestMapping("/api/articles")
+@CrossOrigin
+@Slf4j
 public class ArticleController {
 
 
@@ -58,7 +59,7 @@ public class ArticleController {
     @GetMapping("article/{id}")
     @CrossOrigin
     public Article findById(@PathVariable Long id) {
-        Log.info(id.toString());
+        log.info(id.toString());
         return articleRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Unavailable"));
 

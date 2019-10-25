@@ -13,7 +13,7 @@ import java.util.Set;
 
 
 @RestController
-@RequestMapping("/contacts")
+@RequestMapping("/api/contacts")
 @CrossOrigin
 @Controller
 public class ContactController {

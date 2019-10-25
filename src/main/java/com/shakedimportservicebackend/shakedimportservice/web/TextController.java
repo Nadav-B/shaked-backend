@@ -1,8 +1,8 @@
 package com.shakedimportservicebackend.shakedimportservice.web;
 
-import com.oracle.tools.packager.Log;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.TextContainer;
 import com.shakedimportservicebackend.shakedimportservice.repo.TextRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,8 +11,9 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/texts")
+@RequestMapping("/api/texts")
 @CrossOrigin()
+@Slf4j
 public class TextController {
 
 
@@ -55,7 +56,7 @@ public class TextController {
     @GetMapping("text/{id}")
     @CrossOrigin
     public TextContainer findById(@PathVariable Long id) {
-        Log.info(id.toString());
+        log.info(id.toString());
         return textRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Unavailable"));
     }

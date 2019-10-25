@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -14,10 +15,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable().
-                authorizeRequests()
-
+        http.cors()
+                .and()
+                .authorizeRequests()
                 // informations
                 .antMatchers(HttpMethod.GET, "/texts").permitAll()
                 //services
@@ -30,18 +30,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/images/image/**").permitAll()
                 //contacts
                 .antMatchers(HttpMethod.POST, "/contacts/insert").permitAll()
+                // admin
+                .antMatchers( "/admin").permitAll()
+                .antMatchers( "/admin/**").permitAll()
 
-                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()
-                .and().httpBasic();
+               // .antMatchers(HttpMethod.OPTIONS, "/**").permitAll().anyRequest().authenticated()
+                .and().httpBasic()
+                .and().csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
 
         //.formLogin().loginPage("/login").failureUrl("/login-error");
     }
 
+
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication().withUser("shai").password("{noop}shai").roles("ADMIN");
     }
+
+
 
 
 }

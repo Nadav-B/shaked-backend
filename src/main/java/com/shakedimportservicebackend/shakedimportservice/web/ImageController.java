@@ -1,8 +1,8 @@
 package com.shakedimportservicebackend.shakedimportservice.web;
 
-import com.oracle.tools.packager.Log;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Image;
 import com.shakedimportservicebackend.shakedimportservice.repo.ImageRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +13,10 @@ import java.io.IOException;
 
 
 @RestController
-@RequestMapping("/images")
+@RequestMapping("/api/images")
 @CrossOrigin
 @Controller
+@Slf4j
 public class ImageController {
 
     @Autowired
@@ -24,7 +25,7 @@ public class ImageController {
     @GetMapping("/image/{id}")
     @CrossOrigin
     public Image findById(@PathVariable Long id) {
-        Log.info(id.toString());
+        log.info(id.toString());
         return imageRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Unavailable"));
     }
