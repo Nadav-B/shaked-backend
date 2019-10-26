@@ -1,6 +1,6 @@
 server:
-  port: 8081
- #  port: 8080 // deploy
+#  port: 8081
+  port: 8080  #deploy
 
 spring:
   application:
@@ -14,8 +14,8 @@ spring:
     roles-query: select u.email, r.role from user u inner join user_rol
 
   datasource:
-    url: jdbc:mysql://localhost:3306/shaked?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false&verifyServerCertificate=false&useSSL=false&requireSSL=false&zeroDateTimeBehavior=convertToNull
-   # url: jdbc:mysql://database:3306/shaked
+    #url: jdbc:mysql://localhost:3306/shaked?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false&verifyServerCertificate=false&useSSL=false&requireSSL=false&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://database:3306/shaked
     username: root
     password: password
     sqlScriptEncoding: UTF-8

@@ -18,8 +18,7 @@ public class UserController {
     @RequestMapping("/login")
     @CrossOrigin
     public boolean login(@RequestBody User user) {
-        return
-                user.getUsername().equals("shai") && user.getPassword().equals("shai");
+        return user.getUsername().equals("shai") && user.getPassword().equals("shai");
     }
 
     @RequestMapping("/user")
