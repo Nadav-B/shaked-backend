@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/services")
 public class ServiceController {
 
-
     @Autowired
     private ServiceRepository serviceRepository;
-
 
     @GetMapping
     public Iterable findAll() {
