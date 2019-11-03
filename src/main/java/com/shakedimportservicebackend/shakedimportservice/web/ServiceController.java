@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/services")
-@CrossOrigin
 public class ServiceController {
 
 
@@ -17,7 +16,6 @@ public class ServiceController {
 
 
     @GetMapping
-    @CrossOrigin
     public Iterable findAll() {
         return serviceRepository.findAll();
     }

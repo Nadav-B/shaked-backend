@@ -21,20 +21,17 @@ public class TextController {
     private TextRepository textRepository;
 
     @GetMapping
-    @CrossOrigin
     public Iterable findAll() {
         return textRepository.findAll();
     }
 
     @PostMapping("insert")
-    @CrossOrigin
     public TextContainer post(@RequestBody TextContainer article) {
         textRepository.save(article);
         return article;
     }
 
     @PostMapping("update")
-    @CrossOrigin
     public TextContainer updateText(@RequestBody TextContainer text) {
 
         Optional<TextContainer> articleToModify = textRepository.findById(text.getId());
@@ -47,14 +44,12 @@ public class TextController {
     }
 
     @GetMapping("delete/{id}")
-    @CrossOrigin
     public void deleteArticle(@PathVariable Long id) {
         textRepository.deleteById(id);
     }
 
 
     @GetMapping("text/{id}")
-    @CrossOrigin
     public TextContainer findById(@PathVariable Long id) {
         log.info(id.toString());
         return textRepository.findById(id)

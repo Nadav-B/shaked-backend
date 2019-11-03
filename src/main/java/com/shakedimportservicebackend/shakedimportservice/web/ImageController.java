@@ -23,7 +23,6 @@ public class ImageController {
     private ImageRepository imageRepository;
 
     @GetMapping("/image/{id}")
-    @CrossOrigin
     public Image findById(@PathVariable Long id) {
         log.info(id.toString());
         return imageRepository.findById(id)
@@ -31,13 +30,11 @@ public class ImageController {
     }
 
     @GetMapping
-    @CrossOrigin
     public Iterable findAll() {
         return imageRepository.findAll();
     }
 
     @PostMapping("/upload")
-    @CrossOrigin
     public Image uplaodImage(@RequestParam("myFile") MultipartFile file) throws IOException {
 
         Image img = new Image(file.getOriginalFilename(), file.getContentType(), file.getBytes());
@@ -48,7 +45,6 @@ public class ImageController {
     }
 
     @GetMapping("/delete/{id}")
-    @CrossOrigin
     public void deleteImage(@PathVariable Long id) {
         imageRepository.deleteById(id);
     }

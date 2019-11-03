@@ -22,13 +22,11 @@ public class ArticleController {
     private ArticleRepository articleRepository;
 
     @GetMapping
-    @CrossOrigin
     public Iterable findAll() {
         return articleRepository.findAll();
     }
 
     @PostMapping("insert")
-    @CrossOrigin
     public Article post(@RequestBody Article article) {
         article.setModificationDate(new Date());
         articleRepository.save(article);
@@ -36,7 +34,6 @@ public class ArticleController {
     }
 
     @PostMapping("update")
-    @CrossOrigin
     public Article updateArticle(@RequestBody Article article) {
 
         Optional<Article> articleToModify = articleRepository.findById(article.getId());
@@ -50,14 +47,12 @@ public class ArticleController {
     }
 
     @GetMapping("delete/{id}")
-    @CrossOrigin
     public void deleteArticle(@PathVariable Long id) {
         articleRepository.deleteById(id);
     }
 
 
     @GetMapping("article/{id}")
-    @CrossOrigin
     public Article findById(@PathVariable Long id) {
         log.info(id.toString());
         return articleRepository.findById(id)

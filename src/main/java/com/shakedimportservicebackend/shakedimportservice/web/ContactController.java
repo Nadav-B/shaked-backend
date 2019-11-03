@@ -14,7 +14,6 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/api/contacts")
-@CrossOrigin
 @Controller
 public class ContactController {
 
@@ -22,24 +21,22 @@ public class ContactController {
     private ContactRepository contactRepository;
 
     @GetMapping
-    @CrossOrigin
+
     public Iterable findAll() {
         return contactRepository.findAll();
     }
 
     @PostMapping
-    @CrossOrigin
-    public boolean saveAllContacts(@RequestBody  Set<Contact> contacts) {
+    public boolean saveAllContacts(@RequestBody Set<Contact> contacts) {
         try {
             contactRepository.saveAll(contacts);
             return true;
         } catch (Exception e) {
-            return  false;
+            return false;
         }
     }
 
     @PostMapping("insert")
-    @CrossOrigin
     public Contact addContact(@RequestBody Contact contact) {
         contact.setDate(new Date());
         contact.setMarkAsRead(false);
@@ -47,7 +44,6 @@ public class ContactController {
     }
 
     @PostMapping("update")
-    @CrossOrigin
     public Contact updateArticle(@RequestBody Contact contact) {
         Optional<Contact> contactToModify = contactRepository.findById(contact.getId());
         if (contactToModify.isPresent()) {
