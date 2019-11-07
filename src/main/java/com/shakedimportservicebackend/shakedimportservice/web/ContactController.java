@@ -44,7 +44,7 @@ public class ContactController {
     }
 
     @PostMapping("update")
-    public Contact updateArticle(@RequestBody Contact contact) {
+    public Contact updateContact(@RequestBody Contact contact) {
         Optional<Contact> contactToModify = contactRepository.findById(contact.getId());
         if (contactToModify.isPresent()) {
             contactToModify.get().modifyContact(contact);
@@ -54,14 +54,10 @@ public class ContactController {
 
     }
 
-    @GetMapping("delete")
-    public boolean deleteContact(@RequestBody long id) {
-        Optional<Contact> contactToDelete = contactRepository.findById(id);
-        if (contactToDelete.isPresent()) {
-            contactRepository.delete(contactToDelete.get());
-            return true;
-        }
-        return false;
+    @GetMapping("/delete/{id}")
+    public void deleteImage(@PathVariable Long id) {
+        contactRepository.deleteById(id);
     }
+
 
 }

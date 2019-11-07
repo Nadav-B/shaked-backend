@@ -2,6 +2,7 @@ package com.shakedimportservicebackend.shakedimportservice.web;
 
 import com.shakedimportservicebackend.shakedimportservice.ShakedImportServiceApplication;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -15,6 +16,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT, classes = ShakedImportServiceApplication.class)
+@Ignore
 public class BasicAuthConfigurationIntegrationTest {
 
     TestRestTemplate restTemplate;
