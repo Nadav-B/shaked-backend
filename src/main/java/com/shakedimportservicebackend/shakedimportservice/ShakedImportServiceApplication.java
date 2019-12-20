@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 
-
 @EnableJpaRepositories("com.shakedimportservicebackend.shakedimportservice")
 @EntityScan("com.shakedimportservicebackend.shakedimportservice.persistence.model")
 public class ShakedImportServiceApplication {

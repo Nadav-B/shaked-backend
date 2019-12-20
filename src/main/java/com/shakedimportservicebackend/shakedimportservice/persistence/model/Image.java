@@ -22,18 +22,15 @@ public class Image {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "type")
-    private String type;
-
     @Lob
     @Column(name = "pic")
     private byte[] pic;
 
+    @OneToOne(mappedBy = "image")
+    private Article article;
 
-
-    public Image(String name, String type, byte[] pic) {
+    public Image(String name, byte[] pic) {
         this.name = name;
-        this.type = type;
         this.pic = pic;
     }
 }

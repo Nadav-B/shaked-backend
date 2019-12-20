@@ -37,7 +37,7 @@ public class ImageController {
     @PostMapping("/upload")
     public Image uplaodImage(@RequestParam("myFile") MultipartFile file) throws IOException {
 
-        Image img = new Image(file.getOriginalFilename(), file.getContentType(), file.getBytes());
+        Image img = new Image(file.getOriginalFilename(), file.getBytes());
         final Image savedImage = imageRepository.save(img);
         System.out.println("Image saved");
         return savedImage;

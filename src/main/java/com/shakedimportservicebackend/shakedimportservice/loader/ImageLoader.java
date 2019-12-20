@@ -17,7 +17,7 @@ public class ImageLoader {
 
     public Image getImageFromRow(MultipartFile imageFile) throws IOException {
         if (imageFile != null) {
-            Image image = new Image(imageFile.getOriginalFilename(), imageFile.getContentType(), imageFile.getBytes());
+            Image image = new Image(imageFile.getOriginalFilename(), imageFile.getBytes());
             log.info("Image converted");
             return image;
         } else throw new IllegalArgumentException("Can't convert The image");

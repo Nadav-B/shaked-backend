@@ -4,10 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -29,7 +26,9 @@ public class Article {
     @Column(columnDefinition = "LONGTEXT")
     private String content;
 
-    private long imageId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
 
     private Date modificationDate;
 
@@ -43,7 +42,7 @@ public class Article {
         this.setTitle(modifedArticle.getTitle());
         this.setTag(modifedArticle.getTag());
         this.setIntroduction(modifedArticle.getIntroduction());
-        this.setImageId(modifedArticle.getImageId());
+        this.setImage(modifedArticle.getImage());
     }
 
 }
