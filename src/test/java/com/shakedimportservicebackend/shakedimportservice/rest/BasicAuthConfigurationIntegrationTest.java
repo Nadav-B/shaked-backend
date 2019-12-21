@@ -1,4 +1,4 @@
-package com.shakedimportservicebackend.shakedimportservice.web;
+package com.shakedimportservicebackend.shakedimportservice.rest;
 
 import com.shakedimportservicebackend.shakedimportservice.ShakedImportServiceApplication;
 import org.junit.Before;

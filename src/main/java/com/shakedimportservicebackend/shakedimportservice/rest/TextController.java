@@ -1,4 +1,4 @@
-package com.shakedimportservicebackend.shakedimportservice.web;
+package com.shakedimportservicebackend.shakedimportservice.rest;
 
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.TextContainer;
 import com.shakedimportservicebackend.shakedimportservice.repo.TextRepository;

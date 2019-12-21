@@ -26,9 +26,8 @@ public class Article {
     @Column(columnDefinition = "LONGTEXT")
     private String content;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "image_id", referencedColumnName = "id")
-    private Image image;
+    @Lob
+    private byte[] image;
 
     private Date modificationDate;
 
@@ -37,12 +36,12 @@ public class Article {
     public Article() {
     }
 
-    public void modifyArticle(Article modifedArticle) {
-        this.setContent(modifedArticle.getContent());
-        this.setTitle(modifedArticle.getTitle());
-        this.setTag(modifedArticle.getTag());
-        this.setIntroduction(modifedArticle.getIntroduction());
-        this.setImage(modifedArticle.getImage());
+    public void modifyArticle(Article modifiedArticle) {
+        this.setContent(modifiedArticle.getContent());
+        this.setTitle(modifiedArticle.getTitle());
+        this.setTag(modifiedArticle.getTag());
+        this.setIntroduction(modifiedArticle.getIntroduction());
+        this.setModificationDate(new Date());
     }
 
 }
