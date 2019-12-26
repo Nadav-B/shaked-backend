@@ -3,7 +3,6 @@ package com.shakedimportservicebackend.shakedimportservice.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,19 +14,17 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 @Slf4j
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Value("${spring.profiles.active}")
-    private String activeProfile;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        switch (activeProfile) {
+        /*
             case "local":
                 http.
                         cors()
                         .and()
                         .csrf().disable();
-                break;
-            default:
+
+         */
                 http
                         .authorizeRequests()
                         // informations
@@ -50,9 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .and().httpBasic()
                         .and().csrf()
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-                break;
-        }
-        log.info(activeProfile);
+
 
     }
 
