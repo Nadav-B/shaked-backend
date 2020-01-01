@@ -30,13 +30,15 @@ public class ArticleController {
     }
 
     @PostMapping(value = "add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Article post(@RequestParam(value = "json") String json, @RequestParam(value = "file") MultipartFile file) throws IOException {
+    public Article post(@RequestParam(value = "json") String json, @RequestParam(required = false, value = "file") MultipartFile file) throws IOException {
         Article article = new ObjectMapper().readValue(json, Article.class);
         article.setModificationDate(new Date());
-        try {
-            article.setImage(file.getBytes());
-        } catch (IOException e) {
-            log.error("can't set image");
+        if (file != null) {
+            try {
+                article.setImage(file.getBytes());
+            } catch (IOException e) {
+                log.error("can't set image");
+            }
         }
         articleRepository.save(article);
         return article;
@@ -44,14 +46,16 @@ public class ArticleController {
 
 
     @PostMapping(value = "update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Article update(@RequestParam(value = "json") String json, @RequestParam(value = "file") MultipartFile file) throws IOException {
+    public Article update(@RequestParam(value = "json") String json, @RequestParam(required = false, value = "file") MultipartFile file) throws IOException {
         Article article = new ObjectMapper().readValue(json, Article.class);
         articleRepository.findById(article.getId()).ifPresent(articleToModify -> {
                     articleToModify.modifyArticle(article);
-                    try {
-                        articleToModify.setImage(file.getBytes());
-                    } catch (IOException e) {
-                        log.error("can't set image");
+                    if (file != null) {
+                        try {
+                            articleToModify.setImage(file.getBytes());
+                        } catch (IOException e) {
+                            log.error("can't set image");
+                        }
                     }
                     articleRepository.save(articleToModify);
                 }

@@ -18,7 +18,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         /*
-            case "local":
                 http.
                         cors()
                         .and()
@@ -47,7 +46,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .and().httpBasic()
                         .and().csrf()
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-
 
     }
 
