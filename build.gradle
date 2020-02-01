@@ -1,9 +1,9 @@
 plugins {
 	id 'org.springframework.boot' version '2.1.4.RELEASE'
 	id 'java'
-}
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 
-apply plugin: 'io.spring.dependency-management'
+}
 
 group = 'com.shaked-import-service-backend'
 version = '0.0.1-SNAPSHOT'
