@@ -6,7 +6,7 @@ spring:
     name: ShakedBackendService
 
   datasource:
-    url: jdbc:mysql://database:3306/shaked
+    url: jdbc:mysql://85.214.164.209:3306/shaked
     username: root
     password: password
     sqlScriptEncoding: UTF-8
