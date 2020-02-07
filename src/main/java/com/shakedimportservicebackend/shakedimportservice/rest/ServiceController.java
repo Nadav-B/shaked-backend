@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @Slf4j
-@RequestMapping("/api/services")
+@RequestMapping("/services")
 public class ServiceController {
 
     @Autowired
@@ -23,18 +23,18 @@ public class ServiceController {
         return serviceRepository.findAll();
     }
 
-    @PostMapping("insert")
+    @PostMapping("/insert")
     public Service post(@RequestBody Service service) {
         //  service.setModificationDate(new Date());
         return serviceRepository.save(service);
     }
 
-    @GetMapping("delete/{id}")
+    @GetMapping("/delete/{id}")
     public void deleteService(@PathVariable Long id) {
         serviceRepository.deleteById(id);
     }
 
-    @PostMapping("update")
+    @PostMapping("/update")
     public Service updateArticle(@RequestBody Service service) {
 
         Optional<Service> serviceToModify = serviceRepository.findById(service.getId());
@@ -46,7 +46,7 @@ public class ServiceController {
 
     }
 
-    @GetMapping("service/{id}")
+    @GetMapping("/service/{id}")
     public Service findById(@PathVariable Long id) {
         log.info(id.toString());
         return serviceRepository.findById(id)

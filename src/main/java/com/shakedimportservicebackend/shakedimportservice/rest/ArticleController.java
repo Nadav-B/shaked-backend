@@ -15,8 +15,7 @@ import java.util.Date;
 
 
 @RestController
-@RequestMapping("/api/articles")
-@CrossOrigin
+@RequestMapping("/articles")
 @Slf4j
 public class ArticleController {
 
@@ -29,7 +28,7 @@ public class ArticleController {
         return articleRepository.findAll();
     }
 
-    @PostMapping(value = "add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Article post(@RequestParam(value = "json") String json, @RequestParam(required = false, value = "file") MultipartFile file) throws IOException {
         Article article = new ObjectMapper().readValue(json, Article.class);
         article.setModificationDate(new Date());
@@ -45,7 +44,7 @@ public class ArticleController {
     }
 
 
-    @PostMapping(value = "update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Article update(@RequestParam(value = "json") String json, @RequestParam(required = false, value = "file") MultipartFile file) throws IOException {
         Article article = new ObjectMapper().readValue(json, Article.class);
         articleRepository.findById(article.getId()).ifPresent(articleToModify -> {
@@ -64,12 +63,12 @@ public class ArticleController {
     }
 
 
-    @GetMapping("delete/{id}")
+    @GetMapping("/delete/{id}")
     public void deleteArticle(@PathVariable Long id) {
         articleRepository.deleteById(id);
     }
 
-    @GetMapping("article/{id}")
+    @GetMapping("/article/{id}")
     public Article findById(@PathVariable Long id) {
         return articleRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Unavailable"));

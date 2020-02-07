@@ -1,6 +1,7 @@
 package com.shakedimportservicebackend.shakedimportservice.rest;
 
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.User;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,12 +11,17 @@ import java.security.Principal;
 import java.util.Base64;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/admin")
 public class UserController {
+
+    @Value("${management.admin.username}")
+    private String username;
+    @Value("${management.admin.password}")
+    private String password;
 
     @RequestMapping("/login")
     public boolean login(@RequestBody User user) {
-        return user.getUsername().equals("shai") && user.getPassword().equals("shai");
+        return user.getUsername().equals(username) && user.getPassword().equals(password);
     }
 
     @RequestMapping("/user")

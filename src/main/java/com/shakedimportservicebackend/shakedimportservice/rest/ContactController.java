@@ -13,7 +13,7 @@ import java.util.Set;
 
 
 @RestController
-@RequestMapping("/api/contacts")
+@RequestMapping("/contacts")
 @Controller
 public class ContactController {
 
@@ -21,7 +21,6 @@ public class ContactController {
     private ContactRepository contactRepository;
 
     @GetMapping
-
     public Iterable findAll() {
         return contactRepository.findAll();
     }
@@ -36,14 +35,14 @@ public class ContactController {
         }
     }
 
-    @PostMapping("insert")
+    @PostMapping("/insert")
     public Contact addContact(@RequestBody Contact contact) {
         contact.setDate(new Date());
         contact.setMarkAsRead(false);
         return contactRepository.save(contact);
     }
 
-    @PostMapping("update")
+    @PostMapping("/update")
     public Contact updateContact(@RequestBody Contact contact) {
         Optional<Contact> contactToModify = contactRepository.findById(contact.getId());
         if (contactToModify.isPresent()) {

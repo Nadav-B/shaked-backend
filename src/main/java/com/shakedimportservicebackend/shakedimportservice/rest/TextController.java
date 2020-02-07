@@ -11,7 +11,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/api/texts")
+@RequestMapping("/texts")
 @CrossOrigin()
 @Slf4j
 public class TextController {
@@ -25,13 +25,13 @@ public class TextController {
         return textRepository.findAll();
     }
 
-    @PostMapping("insert")
+    @PostMapping("/insert")
     public TextContainer post(@RequestBody TextContainer article) {
         textRepository.save(article);
         return article;
     }
 
-    @PostMapping("update")
+    @PostMapping("/update")
     public TextContainer updateText(@RequestBody TextContainer text) {
 
         Optional<TextContainer> articleToModify = textRepository.findById(text.getId());
