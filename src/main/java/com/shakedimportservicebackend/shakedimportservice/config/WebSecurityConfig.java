@@ -29,20 +29,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 http.cors().and()
                         .csrf().disable()
                         .authorizeRequests()
+
+                        // texts
                         .antMatchers(HttpMethod.GET,"/texts").permitAll()
                         .antMatchers( "/texts/text/**").permitAll()
-
+                        .antMatchers(HttpMethod.GET,"/texts/**").hasRole("ADMIN")
                         //services
                         .antMatchers(HttpMethod.GET, "/services").permitAll()
+                        .antMatchers(HttpMethod.GET,"/services/**").hasRole("ADMIN")
+
                         //articles
                         .antMatchers(HttpMethod.GET,"/articles").permitAll() // Enabling URL to be accessed by all users (even un-authenticated)
                         .antMatchers(HttpMethod.GET, "/articles/article/**").permitAll()
+                        .antMatchers(HttpMethod.GET,"/articles/**").hasRole("ADMIN") // Enabling URL to be accessed by all users (even un-authenticated)
 
                         //contacts
                         .antMatchers(HttpMethod.POST,"/contacts/insert").permitAll()
+                        .antMatchers("/contacts/**").hasRole("ADMIN")
+
                         // admin
                         .antMatchers("/admin/login").permitAll()
                         .antMatchers("/admin/**").hasRole("ADMIN")
+
+
                       .anyRequest().authenticated()
                         .and().httpBasic();
 
