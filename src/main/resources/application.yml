@@ -8,9 +8,9 @@ spring:
     name: ShakedBackendService
 
   datasource:
-    url: jdbc:mysql://localhost:3306/shaked?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false&verifyServerCertificate=false&useSSL=false&requireSSL=false&zeroDateTimeBehavior=convertToNull
-    username:  ${MYSQL_USERNAME}
-    password: ${MYSQL_PASSWORD}
+    url: jdbc:mysql://database:3306/shaked?allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: ${MYSQL_ROOT_PASSWORD}
     sqlScriptEncoding: UTF-8
 
     testWhileIdle: true
@@ -33,7 +33,7 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.MySQL8Dialect
-    show-sql: false
+    show-sql: true
 
 management:
   admin:
