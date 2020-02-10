@@ -7,11 +7,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
-@Configuration
 @Slf4j
+@EnableWebSecurity
+@Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${management.admin.username}")
@@ -39,11 +41,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         // admin
                         .antMatchers("/admin/login").permitAll()
                         .antMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated()
-                        .and().httpBasic()
-                        .and()
-                        .csrf()
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+                        .anyRequest().authenticated();
+
+                    //    .and()
+                    //    .csrf()
+                    //    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
     }
 
