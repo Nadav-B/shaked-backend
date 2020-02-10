@@ -31,6 +31,4 @@ public class UserController {
         return () ->  new String(Base64.getDecoder()
                 .decode(authToken)).split(":")[0];
     }
-
-
 }
