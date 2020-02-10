@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-                http.cors().and()
+                http
                         .csrf().disable()
                         .authorizeRequests()
 
@@ -51,12 +51,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .antMatchers("/admin/login").permitAll()
                         .antMatchers("/admin/**").hasRole("ADMIN")
 
-                      .anyRequest().authenticated()
-                        .and().httpBasic();
+                      .anyRequest()
+                        .authenticated()
+                        .and()
+                        .httpBasic();
 
-                    //    .and()
-                    //    .csrf()
-                    //    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
     }
 
@@ -65,7 +64,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth.inMemoryAuthentication().withUser(username).password(password).roles("ADMIN");
-
     }
 }
 
