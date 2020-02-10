@@ -2,11 +2,8 @@
 package com.shakedimportservicebackend.shakedimportservice.config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,8 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Slf4j
-@EnableWebSecurity
 @Configuration
+@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${management.admin.username}")
@@ -33,25 +30,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         // texts
                         .antMatchers(HttpMethod.GET,"/texts").permitAll()
                         .antMatchers( "/texts/text/**").permitAll()
-                        .antMatchers(HttpMethod.GET,"/texts/**").hasRole("ADMIN")
                         //services
                         .antMatchers(HttpMethod.GET, "/services").permitAll()
-                        .antMatchers(HttpMethod.GET,"/services/**").hasRole("ADMIN")
 
                         //articles
                         .antMatchers(HttpMethod.GET,"/articles").permitAll() // Enabling URL to be accessed by all users (even un-authenticated)
                         .antMatchers(HttpMethod.GET, "/articles/article/**").permitAll()
-                        .antMatchers(HttpMethod.GET,"/articles/**").hasRole("ADMIN") // Enabling URL to be accessed by all users (even un-authenticated)
 
                         //contacts
                         .antMatchers(HttpMethod.POST,"/contacts/insert").permitAll()
-                        .antMatchers("/contacts").hasRole("ADMIN")
 
                         // admin
                         .antMatchers("/admin/login").permitAll()
-                        .antMatchers("/admin/**").hasRole("ADMIN")
 
-                      .anyRequest()
+                        .anyRequest()
                         .authenticated()
                         .and()
                         .httpBasic();
@@ -63,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
-        auth.inMemoryAuthentication().withUser(username).password(password).roles("ADMIN");
+        auth.inMemoryAuthentication().withUser(username).password(password);
     }
 }
 
