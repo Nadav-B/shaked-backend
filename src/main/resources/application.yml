@@ -53,3 +53,7 @@ spring:
     password: password
     sqlScriptEncoding: UTF-8
 
+management:
+  admin:
+    username: shai
+    password: shai
