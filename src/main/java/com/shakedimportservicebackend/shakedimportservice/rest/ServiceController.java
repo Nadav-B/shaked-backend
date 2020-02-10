@@ -10,8 +10,8 @@ import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 
-@RestController
 @Slf4j
+@RestController
 @RequestMapping("/services")
 public class ServiceController {
 

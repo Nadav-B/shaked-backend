@@ -10,10 +10,9 @@ import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 
+@Slf4j
 @RestController
 @RequestMapping("/texts")
-@CrossOrigin()
-@Slf4j
 public class TextController {
 
 

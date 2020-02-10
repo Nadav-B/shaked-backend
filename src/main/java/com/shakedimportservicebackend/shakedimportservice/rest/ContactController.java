@@ -14,7 +14,6 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/contacts")
-@Controller
 public class ContactController {
 
     @Autowired
