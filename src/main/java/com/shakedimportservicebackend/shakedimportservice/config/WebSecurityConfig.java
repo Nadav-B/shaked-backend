@@ -27,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 http
                         .authorizeRequests()
                         // informations
+
                         .antMatchers("/texts").permitAll()
                         .antMatchers( "/texts/text/**").permitAll()
 
@@ -40,8 +41,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .antMatchers("/contacts/insert").permitAll()
                         // admin
                         .antMatchers("/admin/login").permitAll()
-                        .antMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated();
+                        .antMatchers("/admin/**").hasRole("ADMIN");
+                     //   .anyRequest().authenticated();
 
                     //    .and()
                     //    .csrf()
