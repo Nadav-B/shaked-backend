@@ -60,8 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         auth.inMemoryAuthentication()
                 .withUser(username)
-                .password(encoder.encode(password))
-                .roles("ADMIN");
+                .password("{noop}shai")
+                .roles("USER");
     }
 }
 
