@@ -49,20 +49,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .authenticated()
                         .and()
                         .httpBasic();
-
-
+                
     }
 
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth)
-            throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         auth.inMemoryAuthentication()
                 .withUser(username)
-                .password(password)
+                .password("{noop}"+password)
                 .roles("USER");
     }
 }
-
-
