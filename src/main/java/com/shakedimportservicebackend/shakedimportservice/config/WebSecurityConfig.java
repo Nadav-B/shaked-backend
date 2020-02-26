@@ -26,6 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
                 http
+                     //   .cors().and() // for local
                         .csrf().disable()
                         .authorizeRequests()
 
@@ -34,6 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .antMatchers( "/texts/text/**").permitAll()
                         //services
                         .antMatchers(HttpMethod.GET, "/services").permitAll()
+                        .antMatchers(HttpMethod.GET, "/services/service/**").permitAll()
+
 
                         //articles
                         .antMatchers(HttpMethod.GET,"/articles").permitAll() // Enabling URL to be accessed by all users (even un-authenticated)
@@ -49,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .authenticated()
                         .and()
                         .httpBasic();
-                
+
     }
 
 
