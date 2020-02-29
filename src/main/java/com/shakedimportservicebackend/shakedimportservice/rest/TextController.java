@@ -50,7 +50,6 @@ public class TextController {
 
     @GetMapping("text/{id}")
     public TextContainer findById(@PathVariable Long id) {
-        log.info(id.toString());
         return textRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Unavailable"));
     }

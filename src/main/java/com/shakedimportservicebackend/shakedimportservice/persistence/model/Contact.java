@@ -22,6 +22,7 @@ public class Contact {
     private String email;
     private String phonenumber;
     private String address;
+    private String category;
     private Date date;
     private String comment;
     private boolean markAsRead;

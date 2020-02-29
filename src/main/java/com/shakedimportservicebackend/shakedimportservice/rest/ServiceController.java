@@ -48,7 +48,6 @@ public class ServiceController {
 
     @GetMapping("/service/{id}")
     public Service findById(@PathVariable Long id) {
-        log.info(id.toString());
         return serviceRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Unavailable"));
 
