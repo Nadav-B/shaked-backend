@@ -1,5 +1,6 @@
 package com.shakedimportservicebackend.shakedimportservice.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
@@ -27,6 +28,7 @@ public class Article {
     private String content;
 
     @Lob
+    @JsonIgnore
     private byte[] image;
 
     private Date modificationDate;

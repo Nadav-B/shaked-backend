@@ -5,13 +5,18 @@ import com.shakedimportservicebackend.shakedimportservice.persistence.model.Arti
 import com.shakedimportservicebackend.shakedimportservice.repo.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Optional;
 
 
 @RestController
@@ -62,6 +67,19 @@ public class ArticleController {
         return article;
     }
 
+    @GetMapping("/article/image/{id}")
+    public @ResponseBody
+    ResponseEntity getImage(@PathVariable long id) {
+        Article article = articleRepository.findById(id).orElse(null);
+        if (article != null && article.getImage() != null) {
+
+            return ResponseEntity.ok()
+                    .contentType(MediaType.IMAGE_JPEG)
+                    .contentLength(article.getImage().length)
+                    .body(article.getImage());
+        }
+        return null;
+    }
 
     @GetMapping("/delete/{id}")
     public void deleteArticle(@PathVariable Long id) {
