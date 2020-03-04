@@ -25,7 +25,6 @@ public class ServiceController {
 
     @PostMapping("/insert")
     public Service post(@RequestBody Service service) {
-        //  service.setModificationDate(new Date());
         return serviceRepository.save(service);
     }
 

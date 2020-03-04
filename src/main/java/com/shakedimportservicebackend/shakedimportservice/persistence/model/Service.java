@@ -28,11 +28,14 @@ public class Service {
     @Column(columnDefinition = "LONGTEXT")
     private String content;
 
+    private String contactButton;
+
 
     public void modifyService(Service modifedService) {
         this.setContent(modifedService.getContent());
         this.setTitle(modifedService.getTitle());
         this.setIntroduction(modifedService.getIntroduction());
+        this.setContactButton(modifedService.getContactButton());
     }
 
 

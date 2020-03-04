@@ -33,6 +33,9 @@ public class Article {
 
     private Date modificationDate;
 
+    private String contactButton;
+
+
 
     @Tolerate
     public Article() {
@@ -43,6 +46,8 @@ public class Article {
         this.setTitle(modifiedArticle.getTitle());
         this.setTag(modifiedArticle.getTag());
         this.setIntroduction(modifiedArticle.getIntroduction());
+        this.setContactButton(modifiedArticle.getContactButton());
+
         this.setModificationDate(new Date());
     }
 
