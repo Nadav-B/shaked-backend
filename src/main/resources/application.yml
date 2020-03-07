@@ -11,7 +11,7 @@ spring:
     url: jdbc:mysql://database:3306/shaked?allowPublicKeyRetrieval=true&useSSL=false
     username: root
     password: ${MYSQL_ROOT_PASSWORD}
-
+    sqlScriptEncoding: UTF-8
     testWhileIdle: true
     validationQuery: SELECT 1
 
