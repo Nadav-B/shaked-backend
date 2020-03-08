@@ -15,6 +15,21 @@ configurations {
 		extendsFrom annotationProcessor
 	}
 }
+//disable jUnit4
+configurations.all {
+	exclude group: 'junit', module: 'junit'
+}
+
+sourceSets {
+	test {
+		resources.srcDirs = ["src/test/resources", "src/main/resources"]
+	}
+}
+
+
+test {
+	useJUnitPlatform()
+}
 
 
 repositories {
@@ -30,6 +45,9 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	// Unit TESTS
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+
 }

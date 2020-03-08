@@ -1,12 +1,11 @@
 package com.shakedimportservicebackend.shakedimportservice.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -26,6 +25,11 @@ public class Contact {
     private Date date;
     private String comment;
     private boolean markAsRead;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JoinColumn(name = "contact_id", referencedColumnName = "id")
+    private Survey survey;
 
     @Tolerate
     public Contact() {

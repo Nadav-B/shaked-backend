@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
                 http
-                    //    .cors().and() // local
+                        .cors().and() // local
                         .csrf().disable()
                         .authorizeRequests()
 
