@@ -3,7 +3,6 @@ package com.shakedimportservicebackend.shakedimportservice.persistence.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
 import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
