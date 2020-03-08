@@ -45,8 +45,6 @@ public class ContactController {
     public Contact addContact(@RequestBody Contact contact) {
         contact.setDate(new Date());
         contact.setMarkAsRead(false);
-        List<Answer> answers = contact.getSurvey().getAnswers();
-        System.out.println(answers);
         return contactRepository.save(contact);
     }
 

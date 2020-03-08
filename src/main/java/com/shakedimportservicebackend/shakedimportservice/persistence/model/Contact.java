@@ -7,6 +7,7 @@ import lombok.ToString;
 import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -18,9 +19,12 @@ public class Contact {
     @GeneratedValue
     private long id;
 
+    @NotNull
     private String fullname;
-    private String email;
+    @NotNull
     private String phonenumber;
+
+    private String email;
     private String address;
     private String category;
     private Date date;
