@@ -1,17 +1,21 @@
 package com.shakedimportservicebackend.shakedimportservice.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 import lombok.Data;
+import lombok.ToString;
 import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
-@Builder
 @Data
-
+@ToString(exclude = "contact")
 public class Survey   {
 
     @Id
@@ -24,6 +28,9 @@ public class Survey   {
     @JsonBackReference
     private Contact contact;
 
+    @OneToMany(mappedBy="survey",cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Answer> answers = new ArrayList<>() ;
 
     /*
     @ElementCollection(targetClass = Answer.class)
@@ -33,7 +40,6 @@ public class Survey   {
 
      */
 
-    @Tolerate
     public Survey() {
     }
 }

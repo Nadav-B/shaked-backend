@@ -1,6 +1,7 @@
 package com.shakedimportservicebackend.shakedimportservice.rest;
 
 
+import com.shakedimportservicebackend.shakedimportservice.persistence.model.Answer;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Contact;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Survey;
 import com.shakedimportservicebackend.shakedimportservice.repo.ContactRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -39,15 +41,14 @@ public class ContactController {
     }
 
 
-
     @PostMapping("/insert")
     public Contact addContact(@RequestBody Contact contact) {
         contact.setDate(new Date());
         contact.setMarkAsRead(false);
+        List<Answer> answers = contact.getSurvey().getAnswers();
+        System.out.println(answers);
         return contactRepository.save(contact);
     }
-
-
 
 
     @PostMapping("/update")
