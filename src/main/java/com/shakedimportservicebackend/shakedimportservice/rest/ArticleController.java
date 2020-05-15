@@ -34,9 +34,17 @@ public class ArticleController {
     }
 
     @PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Article post(@RequestParam(value = "json") String json, @RequestParam(required = false, value = "file") MultipartFile file) throws IOException {
+    public Article post(@RequestParam(required = false, value = "json") String json,
+                        @RequestParam(required = false, value = "textFile") MultipartFile textFile,
+                        @RequestParam(required = false, value = "file") MultipartFile file) throws IOException {
         Article article = new ObjectMapper().readValue(json, Article.class);
         article.setModificationDate(new Date());
+
+        if (!textFile.isEmpty() ) {
+            String content = new String(textFile.getBytes());
+            article.setContent(content);
+        }
+
         if (file != null) {
             try {
                 article.setImage(file.getBytes());
@@ -80,6 +88,7 @@ public class ArticleController {
         }
         return null;
     }
+
 
     @GetMapping("/delete/{id}")
     public void deleteArticle(@PathVariable Long id) {

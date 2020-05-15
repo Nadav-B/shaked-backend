@@ -19,7 +19,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest
 @Disabled
 @ActiveProfiles("local")
-public class SurveyTest {
+public class SurveyControllerTest {
 
     @Autowired
     private ContactController contactController;
