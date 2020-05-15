@@ -1,6 +1,5 @@
 package com.shakedimportservicebackend.shakedimportservice.rest;
 
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.Answer;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Contact;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Survey;
 
