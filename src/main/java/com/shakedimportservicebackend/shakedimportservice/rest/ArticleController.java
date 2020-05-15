@@ -36,21 +36,16 @@ public class ArticleController {
     @PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Article post(@RequestParam(required = false, value = "json") String json,
                         @RequestParam(required = false, value = "textFile") MultipartFile textFile,
-                        @RequestParam(required = false, value = "file") MultipartFile file) throws IOException {
+                        @RequestParam(required = false, value = "imageFile") MultipartFile imageFile) throws IOException {
         Article article = new ObjectMapper().readValue(json, Article.class);
         article.setModificationDate(new Date());
 
-        if (!textFile.isEmpty() ) {
+        if (textFile != null) {
             String content = new String(textFile.getBytes());
             article.setContent(content);
         }
-
-        if (file != null) {
-            try {
-                article.setImage(file.getBytes());
-            } catch (IOException e) {
-                log.error("can't set image");
-            }
+        if (imageFile != null) {
+            article.setImage(imageFile.getBytes());
         }
         articleRepository.save(article);
         return article;
@@ -58,16 +53,28 @@ public class ArticleController {
 
 
     @PostMapping(value = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Article update(@RequestParam(value = "json") String json, @RequestParam(required = false, value = "file") MultipartFile file) throws IOException {
+    public Article update(@RequestParam(value = "json") String json,
+                          @RequestParam(required = false, value = "textFile") MultipartFile textFile,
+                          @RequestParam(required = false, value = "imageFile") MultipartFile imageFile) throws IOException {
         Article article = new ObjectMapper().readValue(json, Article.class);
         articleRepository.findById(article.getId()).ifPresent(articleToModify -> {
                     articleToModify.modifyArticle(article);
-                    if (file != null) {
+                    if (imageFile != null) {
                         try {
-                            articleToModify.setImage(file.getBytes());
+                            articleToModify.setImage(imageFile.getBytes());
                         } catch (IOException e) {
-                            log.error("can't set image");
+                            e.printStackTrace();
                         }
+                    }
+
+                    if (textFile != null) {
+                        String content = null;
+                        try {
+                            content = new String(textFile.getBytes());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        articleToModify.setContent(content);
                     }
                     articleRepository.save(articleToModify);
                 }
