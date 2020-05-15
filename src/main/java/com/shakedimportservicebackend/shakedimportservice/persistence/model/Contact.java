@@ -1,12 +1,12 @@
 package com.shakedimportservicebackend.shakedimportservice.persistence.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity

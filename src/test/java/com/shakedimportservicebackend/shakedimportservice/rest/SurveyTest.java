@@ -7,6 +7,7 @@ import com.shakedimportservicebackend.shakedimportservice.persistence.model.Surv
 import com.shakedimportservicebackend.shakedimportservice.repo.ContactRepository;
 import com.shakedimportservicebackend.shakedimportservice.repo.SurveyRepository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
+@Disabled
 @ActiveProfiles("local")
 public class SurveyTest {
 
@@ -31,6 +33,7 @@ public class SurveyTest {
 
 
     @Test
+    @Disabled
     void insertedSurvey() {
 
         Survey survey = Survey.builder().name("tmmmmest").build();
@@ -40,19 +43,14 @@ public class SurveyTest {
         Contact contact1 = contactRepository.save(contact);
         contact1.setSurvey(survey1);
         contactRepository.save(contact1);
-
-
         // Contact contact1 = contactRepository.save(contact);
         //   survey.setContact(contact1);
-
 
         // Answer answer = Answer.builder().question("how are you today from 1-5?").answer("1").build();
         // contactRepository.save(contact1);
 
         Assertions.assertTrue(contactRepository.findAll().iterator().hasNext());
-
     }
-
 
     @Test
     void getAll() {
@@ -60,7 +58,6 @@ public class SurveyTest {
         Iterable<Contact> all = contactController.findAll();
         System.out.println(all);
         Assertions.assertTrue(all.iterator().hasNext());
-
 
     }
 }

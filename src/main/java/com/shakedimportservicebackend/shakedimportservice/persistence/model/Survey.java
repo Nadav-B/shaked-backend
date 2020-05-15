@@ -16,6 +16,7 @@ import java.util.Set;
 @Entity
 @Data
 @ToString(exclude = "contact")
+@Builder
 public class Survey   {
 
     @Id
@@ -40,6 +41,7 @@ public class Survey   {
 
      */
 
+    @Tolerate
     public Survey() {
     }
 }
