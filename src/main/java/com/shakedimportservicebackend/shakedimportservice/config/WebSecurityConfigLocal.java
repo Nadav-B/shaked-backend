@@ -16,8 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Slf4j
 @Configuration
 @EnableWebSecurity
-@Profile("!local")
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+@Profile("local")
+public class WebSecurityConfigLocal extends WebSecurityConfigurerAdapter {
 
     @Value("${management.admin.username}")
     private String username;
@@ -28,8 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
                 http
-                   //     .cors().and() // local
-                        .csrf().disable()
+                    .cors().and()
                         .authorizeRequests()
 
                         // texts
