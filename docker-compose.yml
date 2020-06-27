@@ -1,12 +1,15 @@
-version: '3'
+version: '3.8'
 
 services:
-
-  mysql-dev:
-    image: mysql:8.0.2
+  database:
+    container_name: database
+    image: mysql:8.0.20
+    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: shaked
     ports: 
       - "3306:3306"
+    volumes:
+      - ./database/:/var/lib/mysql
   
