@@ -41,8 +41,7 @@ public class WebSecurityConfigLocal extends WebSecurityConfigurerAdapter {
                         .antMatchers(HttpMethod.GET, "/services/service/**").permitAll()
 
                         // graphql
-                        .antMatchers( "/graphql").permitAll()
-
+                        .antMatchers( HttpMethod.POST,"/graphql").permitAll()
 
                         //articles
                         .antMatchers(HttpMethod.GET,"/articles").permitAll() // Enabling URL to be accessed by all users (even un-authenticated)
