@@ -24,37 +24,41 @@ public class WebSecurityConfigLocal extends WebSecurityConfigurerAdapter {
     @Value("${management.admin.password}")
     private String password;
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-                http
-                        .cors()
-                        .and().
-                        csrf().disable()
-                        .authorizeRequests()
+        http
+                .cors()
+                .and().
+                csrf().disable()
+                .authorizeRequests()
 
-                        // texts
-                        .antMatchers(HttpMethod.GET,"/texts").permitAll()
-                        .antMatchers( "/texts/text/**").permitAll()
-                        //services
-                        .antMatchers(HttpMethod.GET, "/services").permitAll()
-                        .antMatchers(HttpMethod.GET, "/services/service/**").permitAll()
+                // texts
+                .antMatchers(HttpMethod.GET, "/texts").permitAll()
+                .antMatchers("/texts/text/**").permitAll()
+                //services
+                .antMatchers(HttpMethod.GET, "/services").permitAll()
+                .antMatchers(HttpMethod.GET, "/services/service/**").permitAll()
 
 
-                        //articles
-                        .antMatchers(HttpMethod.GET,"/articles").permitAll() // Enabling URL to be accessed by all users (even un-authenticated)
-                        .antMatchers(HttpMethod.GET, "/articles/article/**").permitAll()
+                .antMatchers("/graphql").permitAll()
+                .antMatchers("/vendor/**").permitAll()
+                .antMatchers("/graphiql").permitAll()
 
-                        //contacts
-                        .antMatchers(HttpMethod.POST,"/contacts/insert").permitAll()
 
-                        // admin
-                        .antMatchers("/admin/login").permitAll()
+                //articles
+                .antMatchers(HttpMethod.GET, "/articles").permitAll() // Enabling URL to be accessed by all users (even un-authenticated)
+                .antMatchers(HttpMethod.GET, "/articles/article/**").permitAll()
 
-                        .anyRequest()
-                        .authenticated()
-                        .and()
-                        .httpBasic();
+                //contacts
+                .antMatchers(HttpMethod.POST, "/contacts/insert").permitAll()
+
+                // admin
+                .antMatchers("/admin/login").permitAll()
+
+                .anyRequest()
+                .authenticated();
 
     }
 
@@ -64,7 +68,7 @@ public class WebSecurityConfigLocal extends WebSecurityConfigurerAdapter {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         auth.inMemoryAuthentication()
                 .withUser(username)
-                .password("{noop}"+password)
+                .password("{noop}" + password)
                 .roles("USER");
     }
 }

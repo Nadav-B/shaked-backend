@@ -16,6 +16,7 @@ import javax.persistence.EntityNotFoundException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -29,7 +30,7 @@ public class ArticleController {
     private ArticleRepository articleRepository;
 
     @GetMapping
-    public Iterable findAll() {
+    public List<Article> findAll() {
         return articleRepository.findAll();
     }
 
