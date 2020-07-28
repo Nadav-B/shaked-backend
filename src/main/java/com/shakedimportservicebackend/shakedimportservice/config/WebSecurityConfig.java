@@ -56,7 +56,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/login").permitAll()
 
                 .anyRequest()
-                .authenticated();
+                .authenticated().and()
+                .httpBasic();
 
     }
 
