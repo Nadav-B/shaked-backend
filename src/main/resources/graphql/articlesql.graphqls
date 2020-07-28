@@ -13,4 +13,5 @@ type Article {
     introduction: String
     content: String
     tag: String
+    
 }
