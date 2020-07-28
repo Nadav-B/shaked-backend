@@ -31,6 +31,7 @@ public class Survey   {
 
     @OneToMany(mappedBy="survey",cascade = CascadeType.ALL)
     @JsonManagedReference
+    @Builder.Default
     private List<Answer> answers = new ArrayList<>() ;
 
     /*
