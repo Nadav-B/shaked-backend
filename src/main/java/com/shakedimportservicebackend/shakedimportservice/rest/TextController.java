@@ -24,23 +24,12 @@ public class TextController {
         return textRepository.findAll();
     }
 
-    @PostMapping("/insert")
-    public TextContainer post(@RequestBody TextContainer article) {
-        textRepository.save(article);
-        return article;
+    @PostMapping("/post")
+    public TextContainer post(@RequestBody TextContainer textContainer) {
+        textRepository.save(textContainer);
+        return textContainer    ;
     }
 
-    @PostMapping("/update")
-    public TextContainer updateText(@RequestBody TextContainer text) {
-
-        Optional<TextContainer> articleToModify = textRepository.findById(text.getId());
-        if (articleToModify.isPresent()) {
-            articleToModify.get().modifyInformation(text);
-            textRepository.save(articleToModify.get());
-        }
-        return text;
-
-    }
 
     @GetMapping("delete/{id}")
     public void deleteArticle(@PathVariable Long id) {

@@ -15,7 +15,7 @@ public class Article {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     private String title;
 
@@ -47,7 +47,6 @@ public class Article {
         this.setTag(modifiedArticle.getTag());
         this.setIntroduction(modifiedArticle.getIntroduction());
         this.setContactButton(modifiedArticle.getContactButton());
-
         this.setModificationDate(new Date());
     }
 

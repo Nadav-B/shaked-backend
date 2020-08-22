@@ -7,6 +7,7 @@ import com.shakedimportservicebackend.shakedimportservice.persistence.model.Surv
 import com.shakedimportservicebackend.shakedimportservice.repo.ContactRepository;
 import com.shakedimportservicebackend.shakedimportservice.repo.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,26 +42,17 @@ public class ContactController {
     }
 
 
-    @PostMapping("/insert")
+    @PostMapping("/post")
     public Contact addContact(@RequestBody Contact contact) {
+        System.out.println(contact);
         contact.setDate(new Date());
         contact.setMarkAsRead(false);
         return contactRepository.save(contact);
     }
 
 
-    @PostMapping("/update")
-    public Contact updateContact(@RequestBody Contact contact) {
-        Optional<Contact> contactToModify = contactRepository.findById(contact.getId());
-        if (contactToModify.isPresent()) {
-            contactToModify.get().modifyContact(contact);
-            contactRepository.save(contactToModify.get());
-        }
-        return contact;
-
-    }
-
     @GetMapping("/delete/{id}")
+    @ResponseStatus(value = HttpStatus.OK)
     public void deleteImage(@PathVariable Long id) {
         contactRepository.deleteById(id);
     }

@@ -50,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/articles/article/**").permitAll()
 
                 //contacts
-                .antMatchers(HttpMethod.POST, "/contacts/insert").permitAll()
+                .antMatchers(HttpMethod.POST, "/contacts/post").permitAll()
 
                 // admin
                 .antMatchers("/admin/login").permitAll()

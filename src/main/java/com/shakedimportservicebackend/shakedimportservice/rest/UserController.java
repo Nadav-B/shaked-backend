@@ -19,10 +19,6 @@ public class UserController {
     @Value("${management.admin.password}")
     private String password;
 
-    @RequestMapping("/login")
-    public boolean login(@RequestBody User user) {
-        return user.getUsername().equals(username) && user.getPassword().equals(password);
-    }
 
     @RequestMapping("/user")
     public Principal user(HttpServletRequest request) {

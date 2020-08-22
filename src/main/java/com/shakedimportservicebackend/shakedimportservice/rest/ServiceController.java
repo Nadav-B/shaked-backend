@@ -23,7 +23,7 @@ public class ServiceController {
         return serviceRepository.findAll();
     }
 
-    @PostMapping("/insert")
+    @PostMapping("/post")
     public Service post(@RequestBody Service service) {
         return serviceRepository.save(service);
     }
@@ -33,17 +33,6 @@ public class ServiceController {
         serviceRepository.deleteById(id);
     }
 
-    @PostMapping("/update")
-    public Service updateArticle(@RequestBody Service service) {
-
-        Optional<Service> serviceToModify = serviceRepository.findById(service.getId());
-        if (serviceToModify.isPresent()) {
-            serviceToModify.get().modifyService(service);
-            serviceRepository.save(serviceToModify.get());
-        }
-        return service;
-
-    }
 
     @GetMapping("/service/{id}")
     public Service findById(@PathVariable Long id) {

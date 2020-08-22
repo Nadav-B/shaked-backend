@@ -2,11 +2,14 @@ package com.shakedimportservicebackend.shakedimportservice.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Article;
+import com.shakedimportservicebackend.shakedimportservice.persistence.model.Contact;
 import com.shakedimportservicebackend.shakedimportservice.repo.ArticleRepository;
+import javafx.scene.shape.ArcTo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,54 +37,29 @@ public class ArticleController {
         return articleRepository.findAll();
     }
 
-    @PostMapping(value = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Article post(@RequestParam(required = false, value = "json") String json,
-                        @RequestParam(required = false, value = "textFile") MultipartFile textFile,
-                        @RequestParam(required = false, value = "imageFile") MultipartFile imageFile) throws IOException {
-        Article article = new ObjectMapper().readValue(json, Article.class);
-        article.setModificationDate(new Date());
 
-        if (textFile != null) {
-            String content = new String(textFile.getBytes());
-            article.setContent(content);
-        }
-        if (imageFile != null) {
-            article.setImage(imageFile.getBytes());
-        }
-        articleRepository.save(article);
-        return article;
-    }
+    @PostMapping("/post")
+    public Article post(@RequestBody Article article) {
 
-
-    @PostMapping(value = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Article update(@RequestParam(value = "json") String json,
-                          @RequestParam(required = false, value = "textFile") MultipartFile textFile,
-                          @RequestParam(required = false, value = "imageFile") MultipartFile imageFile) throws IOException {
-        Article article = new ObjectMapper().readValue(json, Article.class);
-        articleRepository.findById(article.getId()).ifPresent(articleToModify -> {
-                    articleToModify.modifyArticle(article);
-                    if (imageFile != null) {
-                        try {
-                            articleToModify.setImage(imageFile.getBytes());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    if (textFile != null) {
-                        String content = null;
-                        try {
-                            content = new String(textFile.getBytes());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                        articleToModify.setContent(content);
-                    }
-                    articleRepository.save(articleToModify);
+        articleRepository.findById(article.getId()).ifPresent(storedArticle -> {
+                    article.setImage(storedArticle.getImage());
                 }
         );
-        return article;
+
+        return articleRepository.save(article);
     }
+
+    @PostMapping(value = "/postImage/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public HttpStatus post(@RequestParam(value = "image") MultipartFile image, @PathVariable Long id) throws IOException {
+        Article article = articleRepository.findById(id).orElse(null);
+        if (article != null) {
+
+            article.setImage(image.getBytes());
+            articleRepository.save(article);
+        }
+        return HttpStatus.OK;
+    }
+
 
     @GetMapping("/article/image/{id}")
     public @ResponseBody
@@ -99,8 +77,12 @@ public class ArticleController {
 
 
     @GetMapping("/delete/{id}")
-    public void deleteArticle(@PathVariable Long id) {
-        articleRepository.deleteById(id);
+    public HttpStatus deleteArticle(@PathVariable Long id) {
+        if (id != null) {
+            articleRepository.deleteById(id);
+            return HttpStatus.OK;
+        }
+        return HttpStatus.NOT_MODIFIED;
     }
 
     @GetMapping("/article/{id}")
