@@ -44,7 +44,6 @@ public class ContactController {
 
     @PostMapping("/post")
     public Contact addContact(@RequestBody Contact contact) {
-        System.out.println(contact);
         contact.setDate(new Date());
         contact.setMarkAsRead(false);
         return contactRepository.save(contact);
