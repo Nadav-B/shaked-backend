@@ -42,6 +42,10 @@ public class WebSecurityConfigLocal extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/services/service/**").permitAll()
 
 
+                //offers
+                .antMatchers(HttpMethod.GET, "/offers/offer/**").permitAll()
+
+
                 .antMatchers("/graphql").permitAll()
                 .antMatchers("/vendor/**").permitAll()
                 .antMatchers("/graphiql").permitAll()

@@ -15,11 +15,13 @@ import javax.persistence.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Service {
+public class Offer {
 
     @Id
     @GeneratedValue
     private long id;
+
+    private String path;
 
     private String title;
 

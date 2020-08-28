@@ -28,9 +28,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
-        .csrf()
-        .disable()
-        .authorizeRequests()
+                .csrf()
+                .disable()
+                .authorizeRequests()
 
                 // texts
                 .antMatchers(HttpMethod.GET, "/texts").permitAll()
@@ -44,6 +44,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/vendor/**").permitAll()
                 .antMatchers("/graphiql").permitAll()
 
+                //offers
+                .antMatchers(HttpMethod.GET, "/offers/offer/**").permitAll()
 
                 //articles
                 .antMatchers(HttpMethod.GET, "/articles").permitAll() // Enabling URL to be accessed by all users (even un-authenticated)
@@ -66,7 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         auth.inMemoryAuthentication()
                 .withUser(username)
-                .password("{noop}"+password)
+                .password("{noop}" + password)
                 .roles("USER");
     }
 }
