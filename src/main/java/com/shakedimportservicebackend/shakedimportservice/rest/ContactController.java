@@ -43,6 +43,7 @@ public class ContactController {
 
 
     @PostMapping("/post")
+    @CrossOrigin
     public Contact addContact(@RequestBody Contact contact) {
         contact.setDate(new Date());
         contact.setMarkAsRead(false);

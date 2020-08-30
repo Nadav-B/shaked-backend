@@ -27,7 +27,6 @@ public class Contact {
     private String address;
     private String category;
     private Date date;
-    private String comment;
     private boolean markAsRead;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -37,11 +36,6 @@ public class Contact {
 
     @Tolerate
     public Contact() {
-    }
-
-    public void modifyContact(Contact modifedContact) {
-        this.setComment(modifedContact.getComment());
-        this.setMarkAsRead(modifedContact.markAsRead);
     }
 
 
