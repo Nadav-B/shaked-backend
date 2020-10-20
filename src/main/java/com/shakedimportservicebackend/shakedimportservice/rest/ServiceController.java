@@ -4,6 +4,7 @@ import com.shakedimportservicebackend.shakedimportservice.persistence.model.Serv
 import com.shakedimportservicebackend.shakedimportservice.repo.ServiceRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -24,11 +25,13 @@ public class ServiceController {
     }
 
     @PostMapping("/post")
+    @Secured("ROLE_ADMIN")
     public Service post(@RequestBody Service service) {
         return serviceRepository.save(service);
     }
 
     @GetMapping("/delete/{id}")
+    @Secured("ROLE_ADMIN")
     public void deleteService(@PathVariable Long id) {
         serviceRepository.deleteById(id);
     }

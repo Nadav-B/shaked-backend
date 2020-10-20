@@ -5,6 +5,7 @@ import com.shakedimportservicebackend.shakedimportservice.repo.OfferRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -28,12 +29,14 @@ public class OfferController {
 
 
     @PostMapping("/post")
+    @Secured("ROLE_ADMIN")
     public Offer post(@RequestBody Offer offer) {
         return offerRepository.save(offer);
     }
 
 
     @GetMapping("/delete/{id}")
+    @Secured("ROLE_ADMIN")
     public HttpStatus deleteArticle(@PathVariable Long id) {
         if (id != null) {
             offerRepository.deleteById(id);

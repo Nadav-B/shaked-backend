@@ -1,19 +1,15 @@
 package com.shakedimportservicebackend.shakedimportservice.rest;
 
 
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.Answer;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Contact;
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.Survey;
 import com.shakedimportservicebackend.shakedimportservice.repo.ContactRepository;
 import com.shakedimportservicebackend.shakedimportservice.repo.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 
@@ -27,20 +23,10 @@ public class ContactController {
     private SurveyRepository surveyRepository;
 
     @GetMapping
+    @Secured("ROLE_ADMIN")
     public Iterable findAll() {
         return contactRepository.findAll();
     }
-
-    @PostMapping
-    public boolean saveAllContacts(@RequestBody Set<Contact> contacts) {
-        try {
-            contactRepository.saveAll(contacts);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
 
     @PostMapping("/post")
     @CrossOrigin
@@ -51,6 +37,7 @@ public class ContactController {
     }
 
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/delete/{id}")
     @ResponseStatus(value = HttpStatus.OK)
     public void deleteImage(@PathVariable Long id) {

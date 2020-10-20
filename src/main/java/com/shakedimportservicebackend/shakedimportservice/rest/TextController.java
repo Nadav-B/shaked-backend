@@ -4,6 +4,7 @@ import com.shakedimportservicebackend.shakedimportservice.persistence.model.Text
 import com.shakedimportservicebackend.shakedimportservice.repo.TextRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
@@ -25,6 +26,7 @@ public class TextController {
     }
 
     @PostMapping("/post")
+    @Secured("ROLE_ADMIN")
     public TextContainer post(@RequestBody TextContainer textContainer) {
         textRepository.save(textContainer);
         return textContainer    ;
@@ -32,6 +34,7 @@ public class TextController {
 
 
     @GetMapping("delete/{id}")
+    @Secured("ROLE_ADMIN")
     public void deleteArticle(@PathVariable Long id) {
         textRepository.deleteById(id);
     }

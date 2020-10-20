@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Article;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Contact;
 import com.shakedimportservicebackend.shakedimportservice.repo.ArticleRepository;
-import javafx.scene.shape.ArcTo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -12,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,6 +38,7 @@ public class ArticleController {
     }
 
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/post")
     public Article post(@RequestBody Article article) {
 
@@ -49,11 +50,11 @@ public class ArticleController {
         return articleRepository.save(article);
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping(value = "/postImage/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public HttpStatus post(@RequestParam(value = "image") MultipartFile image, @PathVariable Long id) throws IOException {
         Article article = articleRepository.findById(id).orElse(null);
         if (article != null) {
-
             article.setImage(image.getBytes());
             articleRepository.save(article);
         }
@@ -76,6 +77,7 @@ public class ArticleController {
     }
 
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/delete/{id}")
     public HttpStatus deleteArticle(@PathVariable Long id) {
         if (id != null) {
