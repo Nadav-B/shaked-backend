@@ -34,7 +34,7 @@ public class OfferController {
 
 
     @GetMapping("/delete/{id}")
-    public HttpStatus deleteArticle(@PathVariable Long id) {
+    public HttpStatus deleteOffer(@PathVariable Long id) {
         if (id != null) {
             offerRepository.deleteById(id);
             return HttpStatus.OK;
