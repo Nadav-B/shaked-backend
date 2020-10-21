@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Article;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Contact;
 import com.shakedimportservicebackend.shakedimportservice.repo.ArticleRepository;
-import javafx.scene.shape.ArcTo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
