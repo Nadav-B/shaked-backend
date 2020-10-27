@@ -1,8 +1,5 @@
-schema {
-    query: ArticlesQuery
-}
 
-type ArticlesQuery {
+type Query {
     getArticles: [Article]
     getArticle(id: String): Article
 }
