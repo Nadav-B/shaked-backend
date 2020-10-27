@@ -1,8 +1,8 @@
 schema {
-    query: Query
+    query: ArticlesQuery
 }
 
-type Query {
+type ArticlesQuery {
     getArticles: [Article]
     getArticle(id: String): Article
 }
@@ -13,5 +13,5 @@ type Article {
     introduction: String
     content: String
     tag: String
-    
+
 }
