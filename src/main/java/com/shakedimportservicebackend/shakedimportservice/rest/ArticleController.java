@@ -32,25 +32,23 @@ public class ArticleController {
 
     @PostMapping("/post")
     public Article post(@RequestBody Article article) {
-
         if (article.getId() != null) {
             articleRepository.findById(article.getId()).ifPresent(storedArticle -> {
                         article.setImage(storedArticle.getImage());
-                    }
-            );
+                    } );
         }
         return articleRepository.save(article);
     }
 
     @PostMapping(value = "/postImage/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public HttpStatus post(@RequestParam(value = "image") MultipartFile image, @PathVariable Long id) throws IOException {
+    public HttpStatus postImage(@RequestParam(value = "image") MultipartFile image, @PathVariable Long id) throws IOException {
         Article article = articleRepository.findById(id).orElse(null);
         if (article != null) {
-
             article.setImage(image.getBytes());
             articleRepository.save(article);
+            return HttpStatus.OK;
         }
-        return HttpStatus.OK;
+        return HttpStatus.NO_CONTENT;
     }
 
 
