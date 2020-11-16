@@ -1,13 +1,9 @@
 package com.shakedimportservicebackend.shakedimportservice.rest;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Article;
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.Contact;
 import com.shakedimportservicebackend.shakedimportservice.repo.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -40,11 +33,12 @@ public class ArticleController {
     @PostMapping("/post")
     public Article post(@RequestBody Article article) {
 
-        articleRepository.findById(article.getId()).ifPresent(storedArticle -> {
-                    article.setImage(storedArticle.getImage());
-                }
-        );
-
+        if (article.getId() != null) {
+            articleRepository.findById(article.getId()).ifPresent(storedArticle -> {
+                        article.setImage(storedArticle.getImage());
+                    }
+            );
+        }
         return articleRepository.save(article);
     }
 
