@@ -1,7 +1,7 @@
 
 extend type Query {
     getServices: [Service]
-    getService(id: String): Service
+    getService(id: ID): Service
 }
 
 type Service {
