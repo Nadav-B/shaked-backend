@@ -1,0 +1,14 @@
+
+extend type Query {
+    getServices: [Service]
+    getService(id: ID): Service
+}
+
+type Service {
+    id: ID!
+    title: String
+    introduction: String
+    content: String
+    contactButton: String
+
+}

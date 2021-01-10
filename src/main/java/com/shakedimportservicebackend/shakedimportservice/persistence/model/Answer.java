@@ -27,13 +27,7 @@ public class Answer implements Serializable {
     @JsonBackReference
     private Survey survey;
 
-    /*
-    @ManyToOne
-    @JoinColumn(name = "survey_id")
-    @JsonBackReference
-    @MapsId
-    private Survey survey;
-*/
+
     @Tolerate
     public Answer() {
 

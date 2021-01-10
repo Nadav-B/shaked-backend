@@ -27,7 +27,7 @@ public class Contact {
     private String address;
     private String category;
     private Date date;
-    private boolean markAsRead;
+    private String comment;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JsonManagedReference
