@@ -5,7 +5,6 @@ package com.shakedimportservicebackend.shakedimportservice.configuration;
 import com.shakedimportservicebackend.shakedimportservice.security.AuthenticationFilter;
 import com.shakedimportservicebackend.shakedimportservice.security.AuthorizationFilter;
 import com.shakedimportservicebackend.shakedimportservice.service.ApplicationUserDetailsService;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -36,7 +35,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers(SIGN_UP_URL).permitAll()
 
                 .antMatchers("/graphql").permitAll()
 
@@ -53,6 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilter(new AuthorizationFilter(authenticationManager()))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
+
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();

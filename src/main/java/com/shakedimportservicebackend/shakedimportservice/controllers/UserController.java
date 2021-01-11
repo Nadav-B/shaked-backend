@@ -2,6 +2,7 @@ package com.shakedimportservicebackend.shakedimportservice.controllers;
 
 import com.shakedimportservicebackend.shakedimportservice.models.ApplicationUser;
 import com.shakedimportservicebackend.shakedimportservice.repositories.ApplicationUserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,26 +12,31 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public class UserController {
 
-    @Value("${management.admin.username}")
     private String username;
-    @Value("${management.admin.password}")
     private String password;
-
 
     private ApplicationUserRepository applicationUserRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
     public UserController(ApplicationUserRepository applicationUserRepository,
-                          BCryptPasswordEncoder bCryptPasswordEncoder) {
+                          BCryptPasswordEncoder bCryptPasswordEncoder,
+                          @Value("${management.admin.username}") String username,
+                          @Value("${management.admin.password}") String password
+    ) {
         this.applicationUserRepository = applicationUserRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.username = username;
+        this.password = password;
+        setAdmin();
     }
 
-    @PostMapping("/record")
-    public void signUp(@RequestBody ApplicationUser user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        applicationUserRepository.save(user);
+    private void setAdmin() {
+        applicationUserRepository.deleteAll();
+        applicationUserRepository.save(ApplicationUser.builder().username(username).password(bCryptPasswordEncoder.encode(password)).build());
     }
+
+
 
     @GetMapping("/status")
     public HttpStatus sessionStatus() {
