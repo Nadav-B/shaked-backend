@@ -1,7 +1,7 @@
 package com.shakedimportservicebackend.shakedimportservice.controllers;
 
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.ApplicationUser;
-import com.shakedimportservicebackend.shakedimportservice.repo.ApplicationUserRepository;
+import com.shakedimportservicebackend.shakedimportservice.repositories.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;

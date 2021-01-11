@@ -1,10 +1,11 @@
 package com.shakedimportservicebackend.shakedimportservice.rest;
 
+import com.shakedimportservicebackend.shakedimportservice.controllers.ContactController;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Contact;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Survey;
 
-import com.shakedimportservicebackend.shakedimportservice.repo.ContactRepository;
-import com.shakedimportservicebackend.shakedimportservice.repo.SurveyRepository;
+import com.shakedimportservicebackend.shakedimportservice.repositories.ContactRepository;
+import com.shakedimportservicebackend.shakedimportservice.repositories.SurveyRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

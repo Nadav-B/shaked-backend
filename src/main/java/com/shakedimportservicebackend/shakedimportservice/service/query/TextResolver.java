@@ -3,7 +3,7 @@ package com.shakedimportservicebackend.shakedimportservice.service.query;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.TextContainer;
-import com.shakedimportservicebackend.shakedimportservice.repo.TextRepository;
+import com.shakedimportservicebackend.shakedimportservice.repositories.TextRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;

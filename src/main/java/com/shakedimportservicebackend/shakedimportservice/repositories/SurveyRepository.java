@@ -1,4 +1,4 @@
-package com.shakedimportservicebackend.shakedimportservice.repo;
+package com.shakedimportservicebackend.shakedimportservice.repositories;
 
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Contact;
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Survey;

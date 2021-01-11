@@ -1,6 +1,6 @@
 package com.shakedimportservicebackend.shakedimportservice.rest;
 
-import org.apache.tomcat.util.http.fileupload.IOUtils;
+import com.shakedimportservicebackend.shakedimportservice.controllers.ArticleController;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -9,10 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ArticleControllerTest {
 

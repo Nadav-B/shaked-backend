@@ -1,7 +1,7 @@
-package com.shakedimportservicebackend.shakedimportservice.rest;
+package com.shakedimportservicebackend.shakedimportservice.controllers;
 
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Offer;
-import com.shakedimportservicebackend.shakedimportservice.repo.OfferRepository;
+import com.shakedimportservicebackend.shakedimportservice.repositories.OfferRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController

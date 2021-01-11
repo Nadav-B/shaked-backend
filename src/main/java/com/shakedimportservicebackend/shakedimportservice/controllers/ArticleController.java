@@ -1,7 +1,7 @@
-package com.shakedimportservicebackend.shakedimportservice.rest;
+package com.shakedimportservicebackend.shakedimportservice.controllers;
 
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Article;
-import com.shakedimportservicebackend.shakedimportservice.repo.ArticleRepository;
+import com.shakedimportservicebackend.shakedimportservice.repositories.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

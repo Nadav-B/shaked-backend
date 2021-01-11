@@ -1,9 +1,9 @@
-package com.shakedimportservicebackend.shakedimportservice.rest;
+package com.shakedimportservicebackend.shakedimportservice.controllers;
 
 
 import com.shakedimportservicebackend.shakedimportservice.persistence.model.Contact;
-import com.shakedimportservicebackend.shakedimportservice.repo.ContactRepository;
-import com.shakedimportservicebackend.shakedimportservice.repo.SurveyRepository;
+import com.shakedimportservicebackend.shakedimportservice.repositories.ContactRepository;
+import com.shakedimportservicebackend.shakedimportservice.repositories.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
