@@ -33,6 +33,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    implementation 'org.springframework.security:spring-security-core:5.1.5.RELEASE'
+    implementation 'org.springframework.security:spring-security-config:5.1.5.RELEASE'
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.10.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.10.5'
+
+    
     // GraphQL
     implementation 'com.graphql-java:graphql-spring-boot-starter:5.0.2'
     implementation 'com.graphql-java:graphiql-spring-boot-starter:5.0.2'
