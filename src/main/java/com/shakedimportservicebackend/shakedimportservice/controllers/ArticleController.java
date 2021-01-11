@@ -31,7 +31,6 @@ public class ArticleController {
     }
 
 
-    @Secured("ROLE_ADMIN")
     @PostMapping("/post")
     public Article post(@RequestBody Article article) {
         if (article.getId() != null) {
@@ -42,7 +41,6 @@ public class ArticleController {
         return articleRepository.save(article);
     }
 
-    @Secured("ROLE_ADMIN")
     @PostMapping(value = "/postImage/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public HttpStatus postImage(@RequestParam(value = "image") MultipartFile image, @PathVariable Long id) throws IOException {
         Article article = articleRepository.findById(id).orElse(null);
