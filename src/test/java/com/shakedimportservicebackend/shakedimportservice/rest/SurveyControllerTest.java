@@ -1,8 +1,8 @@
 package com.shakedimportservicebackend.shakedimportservice.rest;
 
 import com.shakedimportservicebackend.shakedimportservice.controllers.ContactController;
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.Contact;
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.Survey;
+import com.shakedimportservicebackend.shakedimportservice.models.Contact;
+import com.shakedimportservicebackend.shakedimportservice.models.Survey;
 
 import com.shakedimportservicebackend.shakedimportservice.repositories.ContactRepository;
 import com.shakedimportservicebackend.shakedimportservice.repositories.SurveyRepository;

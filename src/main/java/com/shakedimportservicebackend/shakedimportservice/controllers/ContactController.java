@@ -1,7 +1,7 @@
 package com.shakedimportservicebackend.shakedimportservice.controllers;
 
 
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.Contact;
+import com.shakedimportservicebackend.shakedimportservice.models.Contact;
 import com.shakedimportservicebackend.shakedimportservice.repositories.ContactRepository;
 import com.shakedimportservicebackend.shakedimportservice.repositories.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;

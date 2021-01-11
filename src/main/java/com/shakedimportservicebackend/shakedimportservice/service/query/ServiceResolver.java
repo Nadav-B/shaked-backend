@@ -1,7 +1,7 @@
 package com.shakedimportservicebackend.shakedimportservice.service.query;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.Service;
+import com.shakedimportservicebackend.shakedimportservice.models.Service;
 import com.shakedimportservicebackend.shakedimportservice.repositories.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package com.shakedimportservicebackend.shakedimportservice.repositories;
 
 
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.ApplicationUser;
+import com.shakedimportservicebackend.shakedimportservice.models.ApplicationUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

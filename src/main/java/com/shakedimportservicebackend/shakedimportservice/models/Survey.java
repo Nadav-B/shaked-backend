@@ -1,4 +1,4 @@
-package com.shakedimportservicebackend.shakedimportservice.persistence.model;
+package com.shakedimportservicebackend.shakedimportservice.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -10,7 +10,6 @@ import lombok.experimental.Tolerate;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity

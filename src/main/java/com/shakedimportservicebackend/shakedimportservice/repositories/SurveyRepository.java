@@ -1,7 +1,6 @@
 package com.shakedimportservicebackend.shakedimportservice.repositories;
 
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.Contact;
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.Survey;
+import com.shakedimportservicebackend.shakedimportservice.models.Survey;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

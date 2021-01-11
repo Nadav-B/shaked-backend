@@ -1,6 +1,6 @@
 package com.shakedimportservicebackend.shakedimportservice.service;
 
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.ApplicationUser;
+import com.shakedimportservicebackend.shakedimportservice.models.ApplicationUser;
 import com.shakedimportservicebackend.shakedimportservice.repositories.ApplicationUserRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

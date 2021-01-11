@@ -9,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication(scanBasePackages = "com.shakedimportservicebackend.shakedimportservice.*")
 @EnableJpaRepositories("com.shakedimportservicebackend.shakedimportservice")
-@EntityScan("com.shakedimportservicebackend.shakedimportservice.persistence.model")
+@EntityScan("com.shakedimportservicebackend.shakedimportservice.models")
 public class ShakedImportServiceApplication {
 
 	public static void main(String[] args) {

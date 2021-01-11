@@ -1,6 +1,6 @@
 package com.shakedimportservicebackend.shakedimportservice.controllers;
 
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.Offer;
+import com.shakedimportservicebackend.shakedimportservice.models.Offer;
 import com.shakedimportservicebackend.shakedimportservice.repositories.OfferRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

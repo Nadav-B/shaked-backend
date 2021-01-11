@@ -1,7 +1,7 @@
 package com.shakedimportservicebackend.shakedimportservice.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.shakedimportservicebackend.shakedimportservice.persistence.model.ApplicationUser;
+import com.shakedimportservicebackend.shakedimportservice.models.ApplicationUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

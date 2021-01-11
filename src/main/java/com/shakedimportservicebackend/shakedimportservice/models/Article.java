@@ -1,4 +1,4 @@
-package com.shakedimportservicebackend.shakedimportservice.persistence.model;
+package com.shakedimportservicebackend.shakedimportservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;

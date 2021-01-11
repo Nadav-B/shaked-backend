@@ -1,4 +1,4 @@
-package com.shakedimportservicebackend.shakedimportservice.persistence.model;
+package com.shakedimportservicebackend.shakedimportservice.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,13 +15,11 @@ import javax.persistence.Id;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Offer {
+public class Service {
 
     @Id
     @GeneratedValue
     private long id;
-
-    private String path;
 
     private String title;
 
