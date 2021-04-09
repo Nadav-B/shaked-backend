@@ -1,3 +1,4 @@
+
 server:
   port: 8080  #deploy
   servlet:
@@ -36,11 +37,14 @@ spring:
     show-sql: false
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include: health, shutdown, prometheus
   admin:
     username: ${ADMIN_USERNAME}
     password: ${ADMIN_PASSWORD}
     key: ${HASH_KEY}
-
 
 ---
 server:

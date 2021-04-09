@@ -36,6 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().authorizeRequests()
 
                 .antMatchers("/graphql").permitAll()
+                .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/articles/article/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/services/service/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/offers/offer/**").permitAll()
