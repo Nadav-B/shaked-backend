@@ -12,9 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ActiveProfiles("local")
 public class ShakedImportServiceApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+
 
 
 
