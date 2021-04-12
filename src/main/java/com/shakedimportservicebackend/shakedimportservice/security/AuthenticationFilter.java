@@ -23,8 +23,7 @@ import java.security.Key;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.shakedimportservicebackend.shakedimportservice.configuration.SecurityConstants.EXPIRATION_TIME;
-import static com.shakedimportservicebackend.shakedimportservice.configuration.SecurityConstants.KEY;
+import static com.shakedimportservicebackend.shakedimportservice.configuration.SecurityConstants.*;
 
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
@@ -56,7 +55,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         Key key = Keys.hmacShaKeyFor(KEY.getBytes());
         Claims claims = Jwts.claims().setSubject(((User) auth.getPrincipal()).getUsername());
         String token = Jwts.builder().setClaims(claims).signWith(key, SignatureAlgorithm.HS512).setExpiration(exp).compact();
-        res.addHeader("token", token);
+        res.addHeader("token", TOKEN_PREFIX + token);
 
     }
 }

@@ -17,6 +17,8 @@ import java.util.ArrayList;
 
 import static com.shakedimportservicebackend.shakedimportservice.configuration.SecurityConstants.HEADER_NAME;
 import static com.shakedimportservicebackend.shakedimportservice.configuration.SecurityConstants.KEY;
+import static com.shakedimportservicebackend.shakedimportservice.configuration.SecurityConstants.TOKEN_PREFIX;
+
 
 public class AuthorizationFilter extends BasicAuthenticationFilter {
 
@@ -30,7 +32,7 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
                                     FilterChain chain) throws IOException, ServletException {
         String header = request.getHeader(HEADER_NAME);
 
-        if (header == null) {
+            if (header == null || !header.startsWith(TOKEN_PREFIX)) {
             chain.doFilter(request, response);
             return;
         }
@@ -42,7 +44,7 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
     }
 
     private UsernamePasswordAuthenticationToken authenticate(HttpServletRequest request) {
-        String token = request.getHeader(HEADER_NAME);
+        String token = request.getHeader(HEADER_NAME).replace(TOKEN_PREFIX,"");
         if (token != null) {
 
             Claims user = Jwts.parser()
