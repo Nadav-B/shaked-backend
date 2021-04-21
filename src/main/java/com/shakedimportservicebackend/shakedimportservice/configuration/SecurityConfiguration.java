@@ -50,11 +50,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://shakedm.co.il",  "https://www.facebook.*" ,"https://shakedm.co.il", "http://localhost:3000", "http://nextjs:3000"));
+        configuration.setAllowedOrigins(Arrays.asList("*"));
         configuration.setAllowedMethods(Arrays.asList("*"));
         // setAllowCredentials(true) is important, otherwise:
         // The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'.
-        configuration.setAllowCredentials(true);
+        // configuration.setAllowCredentials(true);
         // setAllowedHeaders is important! Without it, OPTIONS preflight request
         // will fail with 403 Invalid CORS request
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
