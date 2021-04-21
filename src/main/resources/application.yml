@@ -48,12 +48,14 @@ server:
   port: 8081  #deploy
 
 spring:
-  profiles: local
-  datasource:
+ datasource:
     url: jdbc:mysql://localhost:3306/shaked?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false&verifyServerCertificate=false&useSSL=false&requireSSL=false&zeroDateTimeBehavior=convertToNull
     username: root
     password: password
     sqlScriptEncoding: UTF-8
+  config:
+    activate:
+      on-profile: local
 
 management:
   profiles: local
