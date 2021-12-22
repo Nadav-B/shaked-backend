@@ -26,7 +26,7 @@ public class ArticleResolver {
         return articleRepository.findById(id);
     }
 
-    @GraphQLQuery
+    @GraphQLQuery(name = "getArticles")
     public List<Article> getArticles() {
         return articleRepository.findAll();
     }

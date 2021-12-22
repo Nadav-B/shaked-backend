@@ -26,7 +26,7 @@ public class TextResolver {
         return textRepository.findById(id);
     }
 
-    @GraphQLQuery
+    @GraphQLQuery(name = "getTexts")
     public List<TextContainer> getTexts() {
         return textRepository.findAll();
     }

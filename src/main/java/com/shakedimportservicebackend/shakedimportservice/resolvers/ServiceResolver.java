@@ -25,7 +25,7 @@ public class ServiceResolver {
         return serviceRepository.findById(id);
     }
 
-    @GraphQLQuery
+    @GraphQLQuery(name = "getServices")
     public List<Service> getServices() {
         return serviceRepository.findAll();
     }
