@@ -1,4 +1,4 @@
-package com.shakedimportservicebackend.shakedimportservice.service;
+package com.shakedimportservicebackend.shakedimportservice.resolvers;
 
 import com.shakedimportservicebackend.shakedimportservice.models.ApplicationUser;
 import com.shakedimportservicebackend.shakedimportservice.repositories.ApplicationUserRepository;
