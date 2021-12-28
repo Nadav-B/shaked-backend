@@ -2,8 +2,11 @@ package com.shakedimportservicebackend.shakedimportservice.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
+import io.leangen.graphql.annotations.GraphQLId;
+import io.leangen.graphql.annotations.GraphQLNonNull;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NonNull;
 import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
@@ -16,23 +19,29 @@ public class Contact {
 
     @Id
     @GeneratedValue
-    private long id;
+    @GraphQLId
+    private Long id;
 
     @NotNull
-    private String fullname;
+    @GraphQLNonNull
+    private String fullName;
     @NotNull
-    private String phonenumber;
+    @GraphQLNonNull
+    private String phoneNumber;
 
     private String email;
     private String address;
     private String category;
-    private Date date;
+    @NonNull
+    @Builder.Default
+    private Date date = new Date();
     private String comment;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JsonManagedReference
     @JoinColumn(name = "contact_id", referencedColumnName = "id")
     private Survey survey;
+
 
     @Tolerate
     public Contact() {
