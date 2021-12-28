@@ -23,7 +23,7 @@ public class ContactCommander {
 
     @GraphQLMutation
     @CrossOrigin
-    public Contact saveContact( Contact contact) {
+    public Contact saveContact(@GraphQLNonNull Contact contact) {
         contact.setDate(new Date());
         return contactRepository.save(contact);
     }
