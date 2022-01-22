@@ -35,13 +35,6 @@ public class Survey   {
     @Builder.Default
     private List<Answer> answers = new ArrayList<>() ;
 
-    /*
-    @ElementCollection(targetClass = Answer.class)
-    @OneToMany(fetch = FetchType.EAGER,mappedBy="survey",cascade = CascadeType.MERGE)
-    @JsonManagedReference
-    private List<Answer> answers;
-
-     */
 
     @Tolerate
     public Survey() {
