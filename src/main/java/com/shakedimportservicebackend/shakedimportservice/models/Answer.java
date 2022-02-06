@@ -1,7 +1,6 @@
 package com.shakedimportservicebackend.shakedimportservice.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import io.leangen.graphql.annotations.GraphQLId;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -18,8 +17,7 @@ public class Answer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @GraphQLId
-    private Long id;
+    private long id;
 
     private String question;
     private String answer;

@@ -4,7 +4,7 @@ package com.shakedimportservicebackend.shakedimportservice.configuration;
 
 import com.shakedimportservicebackend.shakedimportservice.security.AuthenticationFilter;
 import com.shakedimportservicebackend.shakedimportservice.security.AuthorizationFilter;
-import com.shakedimportservicebackend.shakedimportservice.resolvers.ApplicationUserDetailsService;
+import com.shakedimportservicebackend.shakedimportservice.service.ApplicationUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
