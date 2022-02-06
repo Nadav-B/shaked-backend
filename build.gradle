@@ -1,11 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '2.4.4'
+    id 'org.springframework.boot' version '2.6.3'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
 group = 'com.shaked-service'
-sourceCompatibility = '1.8'
+sourceCompatibility = '17'
+
 
 configurations {
     compileOnly {
@@ -29,23 +30,18 @@ sourceSets {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    implementation 'org.springframework.security:spring-security-core:5.5.1'
+    implementation 'org.springframework.security:spring-security-config:5.5.1'
 
     implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 
     // GraphQL
-    implementation 'com.graphql-java:graphql-spring-boot-starter:5.0.2'
-    implementation 'com.graphql-java:graphiql-spring-boot-starter:5.0.2'
-    implementation 'com.graphql-java:graphql-java-tools:5.2.4'
-
-
-    // Monitoring
-    implementation 'io.micrometer:micrometer-registry-prometheus:1.6.5'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.4.4'
+    implementation 'io.leangen.graphql:graphql-spqr-spring-boot-starter:0.0.6'
 
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'

@@ -1,4 +1,3 @@
-
 server:
   port: 8080  #deploy
   servlet:
@@ -11,8 +10,8 @@ spring:
 
   datasource:
     url: jdbc:mysql://database:3306/shaked?allowPublicKeyRetrieval=true&useSSL=false
-    username: root
-    password: ${MYSQL_ROOT_PASSWORD}
+    username:  ${MYSQL_ROOT_USERNAME:root}
+    password: ${MYSQL_ROOT_PASSWORD:password}
     sqlScriptEncoding: UTF-8
     testWhileIdle: true
     validationQuery: SELECT 1
@@ -37,30 +36,9 @@ spring:
     show-sql: false
 
 management:
-  endpoints:
-    web:
-      exposure:
-        include: health, shutdown, prometheus
   admin:
     username: ${ADMIN_USERNAME}
     password: ${ADMIN_PASSWORD}
     key: ${HASH_KEY}
 
----
-server:
-  profiles: local
-  port: 8081  #deploy
 
-spring:
-  profiles: local
-  datasource:
-    url: jdbc:mysql://localhost:3306/shaked?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false&verifyServerCertificate=false&useSSL=false&requireSSL=false&zeroDateTimeBehavior=convertToNull
-    username: root
-    password: password
-    sqlScriptEncoding: UTF-8
-
-management:
-  profiles: local
-  admin:
-    username: shai
-    password: shai

@@ -2,6 +2,7 @@ package com.shakedimportservicebackend.shakedimportservice.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import io.leangen.graphql.annotations.GraphQLId;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -19,8 +20,9 @@ import java.util.List;
 public class Survey   {
 
     @Id
+    @GraphQLId
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -33,13 +35,6 @@ public class Survey   {
     @Builder.Default
     private List<Answer> answers = new ArrayList<>() ;
 
-    /*
-    @ElementCollection(targetClass = Answer.class)
-    @OneToMany(fetch = FetchType.EAGER,mappedBy="survey",cascade = CascadeType.MERGE)
-    @JsonManagedReference
-    private List<Answer> answers;
-
-     */
 
     @Tolerate
     public Survey() {
