@@ -1,0 +1,81 @@
+type Service {
+    id:ID
+    title:String
+    introduction:String
+    content:String
+    contactButton:String
+}
+
+type Article {
+    id:ID
+    title:String
+    tag:String
+    introduction:String
+    content:String
+    contactButton:String
+    #    modificationDate: Date
+}
+
+type Contact {
+    id:ID
+    fullName:String
+    phoneNumber: String
+    email: String
+    address: String
+    category: String
+    # date: Date
+    survey: Survey
+}
+
+type Survey {
+    id:ID
+    name:String
+    answers:[Answer]
+}
+
+
+type Answer {
+    id:ID
+    question: String
+    answer: String
+}
+
+
+type Query {
+    service(id: Float!):Service
+    services(ids:[Float!]):[Service]
+    article(id: Float!):Article
+    articles(ids:[Float!]):[Article]
+}
+
+
+input ContactInput {
+
+    id:ID
+    fullName:String
+    phoneNumber: String
+    email: String
+    address: String
+    category: String
+    # date: Date
+    survey: SurveyInput
+
+}
+
+input SurveyInput{
+    name:String
+    answers:[AnswerInput]
+}
+
+input AnswerInput {
+    question: String
+    answer: String
+
+
+}
+
+
+type Mutation {
+
+    createContact(contact:ContactInput!):Contact
+}
