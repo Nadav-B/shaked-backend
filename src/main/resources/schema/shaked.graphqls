@@ -33,13 +33,11 @@ type Survey {
     answers:[Answer]
 }
 
-
 type Answer {
     id:ID
     question: String
     answer: String
 }
-
 
 type Query {
     service(id: Float!):Service
@@ -48,9 +46,7 @@ type Query {
     articles(ids:[Float!]):[Article]
 }
 
-
 input ContactInput {
-
     id:ID
     fullName:String
     phoneNumber: String
@@ -59,7 +55,6 @@ input ContactInput {
     category: String
     # date: Date
     survey: SurveyInput
-
 }
 
 input SurveyInput{
@@ -70,12 +65,8 @@ input SurveyInput{
 input AnswerInput {
     question: String
     answer: String
-
-
 }
 
-
 type Mutation {
-
     createContact(contact:ContactInput!):Contact
 }
