@@ -1,3 +1,5 @@
+scalar  Long
+
 type Service {
     id:ID
     title:String
@@ -49,7 +51,7 @@ type TextContainer {
 type Query {
     service(id: Float!):Service
     services:[Service]
-    article(id: Float!):Article
+    article(id: Long!):Article
     articles:[Article]
     text(id:Float!): TextContainer
     texts: [TextContainer]
