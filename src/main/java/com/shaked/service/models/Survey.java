@@ -37,4 +37,14 @@ public class Survey {
     @Tolerate
     public Survey() {
     }
+
+    @Tolerate
+    public Survey(SurveyInput surveyInput) {
+        name = surveyInput.getName();
+
+        answers = new ArrayList<>();
+        surveyInput.getAnswers().forEach(answerInput ->
+                answers.add(Answer.builder().answer(answerInput.getAnswer()).question(answerInput.getQuestion()).build()));
+
+    }
 }
