@@ -28,9 +28,4 @@ public class TextContainer {
     public TextContainer() {
     }
 
-    public void modifyInformation(TextContainer modifedInformation) {
-        this.setTag(modifedInformation.getTag());
-        this.setContent(modifedInformation.getContent());
-    }
-
 }

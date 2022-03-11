@@ -32,4 +32,5 @@ public class ArticleDataLoader implements MappedBatchLoader<Long, Article> {
         return CompletableFuture.supplyAsync(() -> StreamSupport.stream(repository.findAllById(ids).spliterator(), false).collect(Collectors.toMap(object -> object.getId(), object -> object)), executor);
     }
 
+
 }

@@ -25,6 +25,7 @@ type Contact {
     category: String
     # date: Date
     survey: Survey
+    comment:String
 }
 
 type Survey {
@@ -39,11 +40,19 @@ type Answer {
     answer: String
 }
 
+type TextContainer {
+    id:ID!
+    tag:String
+    content:String
+}
+
 type Query {
     service(id: Float!):Service
-    services(ids:[Float!]):[Service]
+    services:[Service]
     article(id: Float!):Article
-    articles(ids:[Float!]):[Article]
+    articles:[Article]
+    text(id:Float!): TextContainer
+    texts: [TextContainer]
 }
 
 input ContactInput {

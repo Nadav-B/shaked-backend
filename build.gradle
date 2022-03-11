@@ -22,6 +22,8 @@ generateJava {
             "Answer" : "com.shaked.service.models.Answer",
             "Contact": "com.shaked.service.models.Contact",
             "Survey" : "com.shaked.service.models.Survey",
+            "TextContainer" : "com.shaked.service.models.TextContainer",
+
     ]
 }
 
