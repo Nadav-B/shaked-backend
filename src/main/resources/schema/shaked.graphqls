@@ -1,0 +1,83 @@
+scalar  Long
+
+type Service {
+    id:ID
+    title:String
+    introduction:String
+    content:String
+    contactButton:String
+}
+
+type Article {
+    id:ID
+    title:String
+    tag:String
+    introduction:String
+    content:String
+    contactButton:String
+    #    modificationDate: Date
+}
+
+type Contact {
+    id:ID
+    fullName:String
+    phoneNumber: String
+    email: String
+    address: String
+    category: String
+    # date: Date
+    survey: Survey
+    comment:String
+}
+
+type Survey {
+    id:ID
+    name:String
+    answers:[Answer]
+}
+
+type Answer {
+    id:ID
+    question: String
+    answer: String
+}
+
+type TextContainer {
+    id:ID!
+    tag:String
+    content:String
+}
+
+type Query {
+    service(id: Float!):Service
+    services:[Service]
+    article(id: Long!):Article
+    articles:[Article]
+    text(id:Float!): TextContainer
+    texts: [TextContainer]
+}
+
+input ContactInput {
+    id:ID
+    fullName:String
+    phoneNumber: String
+    email: String
+    address: String
+    category: String
+    # date: Date
+    survey: SurveyInput
+}
+
+input SurveyInput{
+    name:String
+    answers:[AnswerInput]
+}
+
+input AnswerInput {
+    question: String
+    answer: String
+}
+
+type Mutation {
+    createContact(contactInput:ContactInput!):Contact
+}

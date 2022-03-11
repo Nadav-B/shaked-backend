@@ -1,32 +1,37 @@
 plugins {
     id 'org.springframework.boot' version '2.6.3'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id "io.freefair.lombok" version "6.3.0"
+    id "com.netflix.dgs.codegen" version "5.1.16"
     id 'java'
+    id 'idea'
 }
 
-group = 'com.shaked-service'
+group = 'com.shaked.service'
 sourceCompatibility = '17'
 
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
+generateJava {
+    // packageName and subPackageNameTypes are set to generate correct union | interfaces
+    packageName = "com.shaked.service"
+    subPackageNameTypes = "models" // Workaround Relay Node interface support for Json deserialization
+    generateClient = false
+    typeMapping = [
+            "Service"      : "com.shaked.service.models.Service",
+            "Article"      : "com.shaked.service.models.Article",
+            "Answer"       : "com.shaked.service.models.Answer",
+            "Contact"      : "com.shaked.service.models.Contact",
+            "Survey"       : "com.shaked.service.models.Survey",
+            "TextContainer": "com.shaked.service.models.TextContainer",
+
+    ]
 }
-//disable jUnit4
-configurations.all {
-    exclude group: 'junit', module: 'junit'
-}
+
 
 repositories {
     mavenCentral()
 }
 
-sourceSets {
-    test {
-        resources.srcDirs = ["src/test/resources", "src/main/resources"]
-    }
-}
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -40,9 +45,12 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 
-    // GraphQL
-    implementation 'io.leangen.graphql:graphql-spqr-spring-boot-starter:0.0.6'
-
+    //GraphQL
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release"))
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter'
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-pagination'
+    implementation 'com.graphql-java:graphql-java-extended-scalars'
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
 
