@@ -2,18 +2,12 @@ package com.shaked.service.graphql.datafetchers;
 
 
 import com.netflix.graphql.dgs.DgsComponent;
-import com.netflix.graphql.dgs.DgsDataFetchingEnvironment;
 import com.netflix.graphql.dgs.DgsQuery;
-import com.netflix.graphql.dgs.InputArgument;
 import com.shaked.service.models.Article;
 import com.shaked.service.repositories.ArticleRepository;
+import org.springframework.security.access.annotation.Secured;
 
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 
 @DgsComponent
@@ -26,6 +20,7 @@ public class ArticlesDataFetcher {
     }
 
     @DgsQuery(field = "articles")
+    @Secured("ROLE_ADMIN")
     public List<Article> getArticles() {
         return repository.findAll().stream().toList();
 
