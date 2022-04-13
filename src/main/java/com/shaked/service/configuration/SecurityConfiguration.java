@@ -40,8 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().authorizeRequests()
 
                 .antMatchers("/graphql").permitAll()
-                
-
+                .antMatchers("/articles/article/image/**").permitAll()
 
                 .anyRequest().authenticated().and().httpBasic();
     }

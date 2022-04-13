@@ -25,7 +25,7 @@ type Contact {
     email: String
     address: String
     category: String
-    # date: Date
+    date: Date
     survey: Survey
     comment:String
 }
@@ -55,6 +55,7 @@ type Query {
     articles:[Article]
     text(id:Float!): TextContainer
     texts: [TextContainer]
+    contacts:[Contact]
 }
 
 input ContactInput {
