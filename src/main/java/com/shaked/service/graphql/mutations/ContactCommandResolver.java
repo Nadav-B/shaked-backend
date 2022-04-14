@@ -46,6 +46,12 @@ public class ContactCommandResolver {
         return contact;
     }
 
+    @DgsMutation
+    public String deleteContact(@InputArgument String id) {
+        contactRepository.deleteById(Long.valueOf(id));
+        return id;
+    }
+
 
     @Tolerate
     public Survey parseSurvey(SurveyInput surveyInput) {

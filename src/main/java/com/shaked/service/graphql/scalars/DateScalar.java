@@ -15,7 +15,6 @@ import java.util.Date;
 import java.util.Locale;
 
 @DgsScalar(name = "Date")
-
 public class DateScalar implements Coercing<Date, String> {
     @Override
     public String serialize(@NotNull Object dataFetcherResult) throws CoercingSerializeException {

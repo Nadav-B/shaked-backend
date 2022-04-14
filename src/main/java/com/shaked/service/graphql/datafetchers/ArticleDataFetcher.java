@@ -16,8 +16,8 @@ import java.util.concurrent.CompletableFuture;
 @DgsComponent
 public class ArticleDataFetcher {
     @DgsQuery(field = "article")
-    public CompletableFuture<Article> getArticle(@InputArgument Long id, DgsDataFetchingEnvironment env) {
+    public CompletableFuture<Article> getArticle(@InputArgument String id, DgsDataFetchingEnvironment env) {
         var dataLoader = env.<Long, Article>getDataLoader(ArticleDataLoader.class);
-        return dataLoader.load(id);
+        return dataLoader.load(Long.valueOf(id));
     }
 }
