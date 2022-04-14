@@ -1,6 +1,8 @@
 scalar Date
+scalar Long
+
 type Service {
-    id:ID
+    id:Long!
     title:String
     introduction:String
     content:String
@@ -8,7 +10,7 @@ type Service {
 }
 
 type Article {
-    id:ID
+    id:Long!
     title:String
     tag:String
     introduction:String
@@ -18,7 +20,7 @@ type Article {
 }
 
 type Contact {
-    id:ID
+    id:ID!
     fullName:String
     phoneNumber: String
     email: String
