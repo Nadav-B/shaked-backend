@@ -1,5 +1,5 @@
 scalar  Long
-
+scalar Date
 type Service {
     id:ID
     title:String
