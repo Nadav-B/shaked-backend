@@ -20,7 +20,6 @@ public class ArticlesDataFetcher {
     }
 
     @DgsQuery(field = "articles")
-    @Secured("ROLE_ADMIN")
     public List<Article> getArticles() {
         return repository.findAll().stream().toList();
 

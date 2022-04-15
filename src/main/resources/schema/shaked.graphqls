@@ -10,13 +10,13 @@ type Service {
 }
 
 type Article {
-    id:Long!
+    id:ID!
     title:String
     tag:String
     introduction:String
     content:String
     contactButton:String
-    #    modificationDate: Date
+    modificationDate: Date
 }
 
 type Contact {
@@ -56,6 +56,7 @@ type Query {
     articles:[Article]
     text(id:ID!): TextContainer
     texts: [TextContainer]
+    contact(id:ID!):Contact
     contacts:[Contact]
 }
 
