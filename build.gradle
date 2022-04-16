@@ -51,8 +51,10 @@ dependencies {
     implementation 'com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter'
     implementation 'com.netflix.graphql.dgs:graphql-dgs-pagination'
     implementation 'com.graphql-java:graphql-java-extended-scalars'
+
+
     runtimeOnly 'mysql:mysql-connector-java'
-    annotationProcessor 'org.projectlombok:lombok'
+   // annotationProcessor 'org.projectlombok:lombok'
 
     // Unit TESTS
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

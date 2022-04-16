@@ -3,6 +3,7 @@
 package com.shaked.service.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -46,8 +47,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth, PasswordEncoder passwordEncoder) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth,
+                                PasswordEncoder passwordEncoder,
+                                @Value("${admin:username}") String username,
+                                @Value("${admin:password}")String password
+    ) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("shai").password(passwordEncoder.encode("shai")).roles("ADMIN");
+                .withUser(username).password(passwordEncoder.encode(password)).roles("ADMIN");
     }
 }
