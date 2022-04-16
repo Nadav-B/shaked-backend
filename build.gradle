@@ -5,7 +5,22 @@ plugins {
     id "com.netflix.dgs.codegen" version "5.1.16"
     id 'java'
     id 'idea'
+    id 'com.bmuschko.docker-remote-api' version '6.7.0'
+    id 'com.bmuschko.docker-java-application' version '7.3.0'
+
 }
+
+
+docker {
+    javaApplication {
+        baseImage = 'bitnami/java:17.0.2'
+        maintainer = 'Nadav Babai  "nadavbabai@outllok.com"'
+        ports = [8080]
+        images = ['awesome-spring-boot:1.115', 'awesome-spring-boot:latest']
+        jvmArgs = [ '-Xmx2048m']
+    }
+}
+
 
 group = 'com.shaked.service'
 sourceCompatibility = '17'
