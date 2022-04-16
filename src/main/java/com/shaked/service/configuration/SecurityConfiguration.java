@@ -55,7 +55,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                                 @Value("${admin.username}") String username,
                                 @Value("${admin.password}") String password
     ) throws Exception {
-        log.info(username + password);
         auth.inMemoryAuthentication()
                 .withUser(username).password(passwordEncoder.encode(password)).roles("ADMIN");
     }
