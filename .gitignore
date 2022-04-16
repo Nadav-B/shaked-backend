@@ -1,9 +1,8 @@
 HELP.md
 .gradle
 /database
-/build/*
 !build/libs/
-
+/build
 ### STS ###
 .apt_generated
 .classpath

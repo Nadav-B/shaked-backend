@@ -2,6 +2,7 @@
 
 package com.shaked.service.configuration;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,7 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
+@Slf4j
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -36,6 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
@@ -49,9 +52,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth,
                                 PasswordEncoder passwordEncoder,
-                                @Value("${admin:username}") String username,
-                                @Value("${admin:password}")String password
+                                @Value("${admin.username}") String username,
+                                @Value("${admin.password}") String password
     ) throws Exception {
+        log.info(username + password);
         auth.inMemoryAuthentication()
                 .withUser(username).password(passwordEncoder.encode(password)).roles("ADMIN");
     }

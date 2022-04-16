@@ -9,9 +9,7 @@ spring:
     password: password
     sqlScriptEncoding: UTF-8
 
-management:
-  admin:
-    username: shai
-    password: shai
-    key: ${HASH_KEY}
+admin:
+  username: user
+  password: secret
 
