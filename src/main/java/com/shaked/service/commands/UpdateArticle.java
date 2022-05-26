@@ -4,9 +4,10 @@ import com.shaked.service.excepctions.NotFoundException;
 import com.shaked.service.models.Article;
 import com.shaked.service.models.ArticleInput;
 import com.shaked.service.repositories.ArticleRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UpdateArticle implements Command {
-
 
     private final ArticleRepository repository;
 
@@ -27,6 +28,6 @@ public class UpdateArticle implements Command {
 
     @Override
     public Operation getName() {
-        return Operation.CREATE_ARTICLE;
+        return Operation.UPDATE_ARTICLE;
     }
 }
