@@ -93,6 +93,5 @@ input ArticleInput {
     introduction: String
     tag: String
     content:String
-    html:String
     contactButton: String
 }

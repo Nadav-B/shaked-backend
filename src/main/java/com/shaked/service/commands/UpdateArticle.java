@@ -16,7 +16,7 @@ public class UpdateArticle implements Command {
 
     public Article execute(ArticleInput data) {
         var article = repository.findById(Long.valueOf(data.getId())).orElseThrow(() -> new NotFoundException(data.getId()));
-        if (data.getHtml() != null) article.setContent(data.getHtml());
+        if (data.getContent() != null) article.setContent(data.getContent());
         if (data.getContactButton() != null) article.setContactButton(data.getContactButton());
         if (data.getTag() != null) article.setTag(data.getTag());
         if (data.getTitle() != null) article.setTitle(data.getTitle());

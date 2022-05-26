@@ -36,9 +36,8 @@ public class ArticleCommandResolver {
 
     @DgsMutation
     public Article saveArticle(@InputArgument ArticleInput data) {
-        if (data.getId() != null) {
+        if (data.getId() != null ) {
             return ((UpdateArticle) commands.get(Operation.UPDATE_ARTICLE)).execute(data);
-
         } else {
             return ((CreateArticle) commands.get(Operation.CREATE_ARTICLE)).execute(data);
         }
