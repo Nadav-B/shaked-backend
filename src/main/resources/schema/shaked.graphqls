@@ -1,6 +1,24 @@
 scalar Date
 scalar Long
 
+
+type Query {
+    service(id: ID!):Service
+    services:[Service]
+    article(id: ID!):Article
+    articles:[Article]
+    text(id:ID!): TextContainer
+    texts: [TextContainer]
+    contact(id:ID!):Contact
+    contacts:[Contact]
+}
+
+type Mutation {
+    createContact(contactInput:ContactInput!):Contact
+    createArticle(data:ArticleInput!):Article
+    deleteContact(id:ID!):ID!
+}
+
 type Service {
     id:Long!
     title:String
@@ -49,16 +67,6 @@ type TextContainer {
     content:String
 }
 
-type Query {
-    service(id: ID!):Service
-    services:[Service]
-    article(id: ID!):Article
-    articles:[Article]
-    text(id:ID!): TextContainer
-    texts: [TextContainer]
-    contact(id:ID!):Contact
-    contacts:[Contact]
-}
 
 input ContactInput {
     fullName:String
@@ -79,7 +87,11 @@ input AnswerInput {
     answer: String
 }
 
-type Mutation {
-    createContact(contactInput:ContactInput!):Contact
-    deleteContact(id:ID!):ID!
+input ArticleInput {
+    name: String!
+    introduction: String!
+    tag: String!
+    content:String!
+    html:String!
+    contactButton: String
 }
