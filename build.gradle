@@ -38,6 +38,7 @@ generateJava {
             "Contact"      : "com.shaked.service.models.Contact",
             "Survey"       : "com.shaked.service.models.Survey",
             "TextContainer": "com.shaked.service.models.TextContainer",
+            "Media": "com.shaked.service.models.Media",
 
     ]
 }

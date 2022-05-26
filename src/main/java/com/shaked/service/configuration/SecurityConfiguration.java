@@ -44,6 +44,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/graphql").permitAll()
                 .antMatchers("/articles/article/image/**").permitAll()
+                .antMatchers("/media/**").permitAll()
+
                 .anyRequest().authenticated().and().httpBasic();
     }
 

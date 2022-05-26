@@ -1,6 +1,6 @@
 scalar Date
 scalar Long
-
+scalar Upload
 
 type Query {
     service(id: ID!):Service
@@ -11,6 +11,7 @@ type Query {
     texts: [TextContainer]
     contact(id:ID!):Contact
     contacts:[Contact]
+    media:[Media]
 }
 
 type Mutation {
@@ -18,6 +19,15 @@ type Mutation {
     deleteContact(id:ID!):ID!
     saveArticle(data:ArticleInput!):Article
     deleteArticle(id:ID!):ID!
+}
+extend type Mutation  {
+    saveMedia(data:Upload!):Media
+}
+
+
+type Media {
+    id:Long
+    fileName:String
 }
 
 type Service {
