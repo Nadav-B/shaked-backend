@@ -4,17 +4,18 @@ package com.shaked.service.graphql.mutations;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.InputArgument;
+import com.shaked.service.commands.Command;
+import com.shaked.service.commands.CreateArticle;
+import com.shaked.service.commands.Operation;
+import com.shaked.service.commands.UpdateArticle;
 import com.shaked.service.models.*;
 import com.shaked.service.repositories.ArticleRepository;
-import com.shaked.service.repositories.ContactRepository;
-import lombok.experimental.Tolerate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @DgsComponent
 @Component
@@ -23,23 +24,24 @@ public class ArticleCommandResolver {
 
     private final ArticleRepository repository;
 
+    private final Map<Operation, Command> commands;
 
-    public ArticleCommandResolver(ArticleRepository repository) {
+
+    public ArticleCommandResolver(ArticleRepository repository, List<Command> commands) {
         this.repository = repository;
+        this.commands = commands.stream()
+                .collect(Collectors.toMap(Command::getName, command -> command));
+
     }
 
     @DgsMutation
-    public Article createArticle(@InputArgument ArticleInput data) {
+    public Article saveArticle(@InputArgument ArticleInput data) {
+        if (data.getId() != null) {
+            return ((UpdateArticle) commands.get(Operation.UPDATE_ARTICLE)).execute(data);
 
-        return Article.builder()
-                .contactButton(data.getContactButton())
-                .content(data.getContent())
-                .introduction(data.getIntroduction())
-                .modificationDate(new Date())
-                .tag(data.getTag())
-                .build();
-
-
+        } else {
+            return ((CreateArticle) commands.get(Operation.CREATE_ARTICLE)).execute(data);
+        }
     }
 
     @DgsMutation

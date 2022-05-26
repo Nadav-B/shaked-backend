@@ -8,6 +8,7 @@ import com.shaked.service.models.*;
 import com.shaked.service.repositories.ContactRepository;
 import lombok.experimental.Tolerate;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class ContactCommandResolver {
     }
 
     @DgsMutation
+    @Secured("ROLE_ADMIN")
     public String deleteContact(@InputArgument String id) {
         contactRepository.deleteById(Long.valueOf(id));
         return id;

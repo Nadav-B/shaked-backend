@@ -15,7 +15,7 @@ type Query {
 
 type Mutation {
     createContact(contactInput:ContactInput!):Contact
-    createArticle(data:ArticleInput!):Article
+    saveArticle(data:ArticleInput!):Article
     deleteContact(id:ID!):ID!
 }
 
@@ -88,10 +88,11 @@ input AnswerInput {
 }
 
 input ArticleInput {
-    name: String!
-    introduction: String!
-    tag: String!
-    content:String!
-    html:String!
+    id: ID
+    title: String
+    introduction: String
+    tag: String
+    content:String
+    html:String
     contactButton: String
 }
