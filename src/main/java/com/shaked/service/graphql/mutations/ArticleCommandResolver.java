@@ -11,6 +11,7 @@ import com.shaked.service.commands.UpdateArticle;
 import com.shaked.service.models.*;
 import com.shaked.service.repositories.ArticleRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -35,6 +36,7 @@ public class ArticleCommandResolver {
     }
 
     @DgsMutation
+    @Secured("ROLE_ADMIN")
     public Article saveArticle(@InputArgument ArticleInput data) {
         if (data.getId() != null ) {
             return ((UpdateArticle) commands.get(Operation.UPDATE_ARTICLE)).execute(data);

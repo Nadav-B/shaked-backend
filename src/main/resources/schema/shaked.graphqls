@@ -15,8 +15,9 @@ type Query {
 
 type Mutation {
     createContact(contactInput:ContactInput!):Contact
-    saveArticle(data:ArticleInput!):Article
     deleteContact(id:ID!):ID!
+    saveArticle(data:ArticleInput!):Article
+    deleteArticle(id:ID!):ID!
 }
 
 type Service {
