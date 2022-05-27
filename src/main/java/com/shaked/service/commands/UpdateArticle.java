@@ -22,6 +22,7 @@ public class UpdateArticle implements Command {
         if (data.getTag() != null) article.setTag(data.getTag());
         if (data.getTitle() != null) article.setTitle(data.getTitle());
         if (data.getIntroduction() != null) article.setIntroduction(data.getIntroduction());
+        if (data.getMediaId() != null) article.setMediaId(data.getMediaId());
 
         return repository.save(article);
     }

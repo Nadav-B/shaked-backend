@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class CreateArticle implements Command{
+public class CreateArticle implements Command {
     private final ArticleRepository repository;
 
     public CreateArticle(ArticleRepository repository) {
@@ -24,6 +24,7 @@ public class CreateArticle implements Command{
                 .introduction(data.getIntroduction())
                 .modificationDate(new Date())
                 .tag(data.getTag())
+                .mediaId(data.getMediaId())
                 .build()
         );
     }

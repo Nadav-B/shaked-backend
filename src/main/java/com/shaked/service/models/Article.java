@@ -27,6 +27,8 @@ public class Article {
     @Column(columnDefinition = "LONGTEXT")
     private String content;
 
+    private Integer mediaId;
+
     @Lob
     @JsonIgnore
     private byte[] image;
@@ -34,7 +36,6 @@ public class Article {
     private Date modificationDate;
 
     private String contactButton;
-
 
 
     @Tolerate

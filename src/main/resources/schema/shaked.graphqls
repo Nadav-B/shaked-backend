@@ -46,6 +46,7 @@ type Article {
     content:String
     contactButton:String
     modificationDate: Date
+    mediaId:Int
 }
 
 type Contact {
@@ -105,4 +106,5 @@ input ArticleInput {
     tag: String
     content:String
     contactButton: String
+    mediaId: Int
 }
