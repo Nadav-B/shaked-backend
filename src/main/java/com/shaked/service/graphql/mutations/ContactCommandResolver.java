@@ -4,68 +4,44 @@ package com.shaked.service.graphql.mutations;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.InputArgument;
+import com.shaked.service.commands.Command;
+import com.shaked.service.commands.CreateContact;
+import com.shaked.service.commands.Operation;
 import com.shaked.service.models.*;
 import com.shaked.service.repositories.ContactRepository;
-import lombok.experimental.Tolerate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @DgsComponent
 @Component
 @Slf4j
 public class ContactCommandResolver {
 
-    private final ContactRepository contactRepository;
+    private final ContactRepository repository;
+    private final Map<Operation, Command> commands;
 
-
-    public ContactCommandResolver(ContactRepository contactRepository) {
-        this.contactRepository = contactRepository;
+    public ContactCommandResolver(ContactRepository repository, List<Command> commands) {
+        this.repository = repository;
+        this.commands = commands.stream()
+                .collect(Collectors.toMap(Command::getName, command -> command));
     }
 
-    @DgsMutation(field = "createContact")
-    public Contact createContact(@InputArgument ContactInput contactInput) {
-
-        var contact = Contact.builder()
-                .phoneNumber(contactInput.getPhoneNumber())
-                .category(contactInput.getCategory())
-                .address(contactInput.getAddress())
-                .email(contactInput.getEmail())
-                .date(new Date())
-                .fullName(contactInput.getFullName())
-                .build();
-
-        contact = contactRepository.save(contact);
-        if (contactInput.getSurvey() != null) {
-            contact.setSurvey(parseSurvey(contactInput.getSurvey()));
-            contactRepository.save(contact);
-        }
-        return contact;
+    @DgsMutation
+    public Contact saveContact(@InputArgument ContactInput data) {
+        return ((CreateContact) commands.get(Operation.CREATE_CONTACT)).execute(data);
     }
 
     @DgsMutation
     @Secured("ROLE_ADMIN")
-    public String deleteContact(@InputArgument String id) {
-        contactRepository.deleteById(Long.valueOf(id));
-        return id;
+    public Contact deleteContact(@InputArgument String id) {
+        repository.deleteById(Integer.valueOf(id));
+        return Contact.builder().id(Integer.valueOf(id)).build();
     }
 
-
-    @Tolerate
-    public Survey parseSurvey(SurveyInput surveyInput) {
-        var survey = Survey.builder().name(surveyInput.getName()).build();
-
-        List<Answer> answers = new ArrayList<>();
-        surveyInput.getAnswers().forEach(answerInput ->
-                answers.add(Answer.builder().survey(survey).answer(answerInput.getAnswer()).question(answerInput.getQuestion()).build()));
-
-        survey.setAnswers(answers);
-        return survey;
-
-    }
 
 }

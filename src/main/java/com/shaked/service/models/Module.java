@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.Tolerate;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,44 +13,28 @@ import java.util.Date;
 @Data
 @Entity
 @Builder
-public class Article {
+public class Module implements Timestamp {
 
     @Id
     @GeneratedValue
-    private Long id;
-
+    private Integer id;
     private String title;
-
     private String tag;
-
     @Column(columnDefinition = "LONGTEXT")
     private String introduction;
-
     @Column(columnDefinition = "LONGTEXT")
     private String content;
-
     private Integer mediaId;
-
-    @Lob
-    @JsonIgnore
-    private byte[] image;
-
-    private Date modificationDate;
-
+    @CreatedDate
+    private Date createdAt;
+    @LastModifiedDate
+    private Date updatedAt;
     private String contactButton;
-
+    private ModuleType type;
 
     @Tolerate
-    public Article() {
+    public Module() {
     }
 
-    public void modifyArticle(Article modifiedArticle) {
-        this.setContent(modifiedArticle.getContent());
-        this.setTitle(modifiedArticle.getTitle());
-        this.setTag(modifiedArticle.getTag());
-        this.setIntroduction(modifiedArticle.getIntroduction());
-        this.setContactButton(modifiedArticle.getContactButton());
-        this.setModificationDate(new Date());
-    }
 
 }

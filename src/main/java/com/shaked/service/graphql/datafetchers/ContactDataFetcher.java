@@ -30,7 +30,7 @@ public class ContactDataFetcher {
     @DgsQuery(field = "contact")
     @Secured("ROLE_ADMIN")
     public Contact getContact(@InputArgument String id) {
-        return repository.findById(Long.parseLong(id)).orElseThrow();
+        return repository.findById(Integer.valueOf(id)).orElseThrow();
     }
 
 

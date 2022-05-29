@@ -1,62 +1,54 @@
 scalar Date
-scalar Long
 scalar Upload
 
 type Query {
-    service(id: ID!):Service
-    services:[Service]
-    article(id: ID!):Article
-    articles:[Article]
-    text(id:ID!): TextContainer
-    texts: [TextContainer]
+    module(id: ID!):Module
+    modules:[Module]
     contact(id:ID!):Contact
     contacts:[Contact]
     media:[Media]
 }
 
 type Mutation {
-    createContact(contactInput:ContactInput!):Contact
-    deleteContact(id:ID!):ID!
-    saveArticle(data:ArticleInput!):Article
-    deleteArticle(id:ID!):ID!
+    saveContact(data:ContactInput!):Contact
+    deleteContact(id:ID!):Contact!
+    saveModule(data:ModuleInput!):Module
+    deleteModule(id:ID!):Module!
+    deleteMedia(id:ID!):Module!
+
 }
 extend type Mutation  {
     saveMedia(data:Upload!):Media
 }
 
-
 type Media {
-    id:Long
+    id:ID!
     fileName:String
+    createdAt: Date!
+    updatedAt: Date!
 }
 
-type Service {
-    id:Long!
-    title:String
-    introduction:String
-    content:String
-    contactButton:String
-}
-
-type Article {
+type Module {
     id:ID!
     title:String
     tag:String
     introduction:String
     content:String
     contactButton:String
-    modificationDate: Date
+    createdAt: Date!
+    updatedAt: Date!
     mediaId:Int
+    type:ModuleType!
 }
 
 type Contact {
     id:ID!
-    fullName:String
-    phoneNumber: String
+    fullName:String!
+    phoneNumber: String!
     email: String
     address: String
     category: String
-    date: Date
+    createdAt: Date!
     survey: Survey
     comment:String
 }
@@ -73,16 +65,10 @@ type Answer {
     answer: String
 }
 
-type TextContainer {
-    id:ID!
-    tag:String
-    content:String
-}
-
 
 input ContactInput {
-    fullName:String
-    phoneNumber: String
+    fullName:String!
+    phoneNumber: String!
     email: String
     address: String
     category: String
@@ -99,7 +85,7 @@ input AnswerInput {
     answer: String
 }
 
-input ArticleInput {
+input ModuleInput {
     id: ID
     title: String
     introduction: String
@@ -107,4 +93,16 @@ input ArticleInput {
     content:String
     contactButton: String
     mediaId: Int
+    type: ModuleType
 }
+
+
+enum ModuleType {
+    ARTICLE,
+    OFFER,
+    INTRODUCTION,
+    SERVICE
+}
+
+
+

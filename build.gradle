@@ -32,14 +32,11 @@ generateJava {
     subPackageNameTypes = "models" // Workaround Relay Node interface support for Json deserialization
     generateClient = false
     typeMapping = [
-            "Service"      : "com.shaked.service.models.Service",
-            "Article"      : "com.shaked.service.models.Article",
+            "Module"      : "com.shaked.service.models.Module",
             "Answer"       : "com.shaked.service.models.Answer",
             "Contact"      : "com.shaked.service.models.Contact",
             "Survey"       : "com.shaked.service.models.Survey",
-            "TextContainer": "com.shaked.service.models.TextContainer",
             "Media": "com.shaked.service.models.Media",
-
     ]
 }
 

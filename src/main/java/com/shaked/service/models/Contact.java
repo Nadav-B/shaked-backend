@@ -5,8 +5,9 @@ import com.sun.istack.NotNull;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.NonNull;
 import lombok.experimental.Tolerate;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,29 +15,28 @@ import java.util.Date;
 @Entity
 @Data
 @Builder
-public class Contact {
+public class Contact implements Timestamp {
 
     @Id
     @GeneratedValue
-    private Long id;
-
+    private Integer id;
     @NotNull
     private String fullName;
     @NotNull
     private String phoneNumber;
-
     private String email;
     private String address;
     private String category;
-    @NonNull
-    @Builder.Default
-    private Date date = new Date();
+    @LastModifiedDate
     private String comment;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JsonManagedReference
     @JoinColumn(name = "contact_id", referencedColumnName = "id")
     private Survey survey;
+    @CreatedDate
+    private Date createdAt;
+    @LastModifiedDate
+    private Date updatedAt;
 
 
     @Tolerate
