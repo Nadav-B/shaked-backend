@@ -2,9 +2,9 @@ scalar Date
 scalar Upload
 
 type Query {
-    module(id: ID!):Module
-    modules:[Module]
-    contact(id:ID!):Contact
+    module(where: ModuleUniqueInput!):Module
+    modules(where: ModuleWhereInput):[Module]
+    contact(where:ContactUniqueInput!):Contact
     contacts:[Contact]
     media:[Media]
 }
@@ -28,6 +28,18 @@ type Media {
     updatedAt: Date!
 }
 
+input ModuleUniqueInput {
+    id:String!
+}
+
+input ModuleWhereInput {
+    type:ModuleType
+}
+
+
+input ContactUniqueInput {
+    id:String!
+}
 type Module {
     id:ID!
     title:String

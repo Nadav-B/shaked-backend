@@ -7,6 +7,8 @@ import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import com.shaked.service.graphql.dataloaders.ModuleDataLoader;
 import com.shaked.service.models.Module;
+import com.shaked.service.models.ModuleUniqueInput;
+import com.shaked.service.models.ModuleWhereInput;
 import com.shaked.service.repositories.ModuleRepository;
 
 import java.util.List;
@@ -23,13 +25,14 @@ public class ModuleDataFetcher {
     }
 
     @DgsQuery(field = "module")
-    public CompletableFuture<Module> getModule(@InputArgument String id, DgsDataFetchingEnvironment env) {
+    public CompletableFuture<Module> getModule(@InputArgument ModuleUniqueInput where, DgsDataFetchingEnvironment env) {
         var dataLoader = env.<Long, Module>getDataLoader(ModuleDataLoader.class);
-        return dataLoader.load(Long.valueOf(id));
+        return dataLoader.load(Long.valueOf(where.getId()));
     }
 
     @DgsQuery(field = "modules")
-    public List<Module> getModules() {
+    public List<Module> getModules(@InputArgument ModuleWhereInput where) {
+        if (where.getType() != null) return repository.findAllByType(where.getType());
         return repository.findAll().stream().toList();
 
     }

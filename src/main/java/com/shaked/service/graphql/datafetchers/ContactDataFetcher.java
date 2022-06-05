@@ -5,6 +5,7 @@ import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import com.shaked.service.models.Contact;
+import com.shaked.service.models.ContactUniqueInput;
 import com.shaked.service.repositories.ContactRepository;
 import org.springframework.security.access.annotation.Secured;
 
@@ -29,8 +30,8 @@ public class ContactDataFetcher {
 
     @DgsQuery(field = "contact")
     @Secured("ROLE_ADMIN")
-    public Contact getContact(@InputArgument String id) {
-        return repository.findById(Integer.valueOf(id)).orElseThrow();
+    public Contact getContact(@InputArgument ContactUniqueInput where) {
+        return repository.findById(Integer.valueOf(where.getId())).orElseThrow();
     }
 
 
