@@ -7,6 +7,8 @@ type Query {
     contact(where:ContactUniqueInput!):Contact
     contacts:[Contact]
     media:[Media]
+    isAuthenticated: Boolean
+
 }
 
 type Mutation {
@@ -20,6 +22,7 @@ type Mutation {
 extend type Mutation  {
     saveMedia(data:Upload!):Media
 }
+
 
 type Media {
     id:ID!
