@@ -28,7 +28,7 @@ public class UpdateModule implements Command {
         if (data.getType() != null) module.setType(data.getType());
 
         module.setUpdatedAt(new Date());
-        return repository.save(module);
+        return module;
     }
 
     @Override

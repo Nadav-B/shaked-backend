@@ -33,18 +33,19 @@ public class ModuleCommandResolver {
         this.repository = repository;
         this.commands = commands.stream()
                 .collect(Collectors.toMap(Command::getName, command -> command));
-
     }
 
     @DgsMutation
     @Secured("ROLE_ADMIN")
     public Module saveModule(@InputArgument ModuleInput data) {
         log.info(data.toString());
-        if (data.getId() != null ) {
-            return ((UpdateModule) commands.get(Operation.UPDATE_MODULE)).execute(data);
+        Module module;
+        if (data.getId() != null) {
+            module = ((UpdateModule) commands.get(Operation.UPDATE_MODULE)).execute(data);
         } else {
-            return ((CreateModule) commands.get(Operation.CREATE_MODULE)).execute(data);
+            module = ((CreateModule) commands.get(Operation.CREATE_MODULE)).execute(data);
         }
+        return repository.save(module);
     }
 
     @DgsMutation

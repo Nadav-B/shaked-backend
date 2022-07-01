@@ -9,16 +9,9 @@ import java.util.Date;
 
 @Component
 public class CreateModule implements Command {
-    private final ModuleRepository repository;
-
-    public CreateModule(ModuleRepository repository) {
-        this.repository = repository;
-    }
-
     public Module execute(ModuleInput data) {
 
-
-        return repository.save(Module.builder()
+        return Module.builder()
                 .contactButton(data.getContactButton())
                 .content(data.getContent())
                 .title(data.getTitle())
@@ -28,8 +21,7 @@ public class CreateModule implements Command {
                 .tag(data.getTag())
                 .type(data.getType())
                 .mediaId(data.getMediaId())
-                .build()
-        );
+                .build();
     }
 
     @Override

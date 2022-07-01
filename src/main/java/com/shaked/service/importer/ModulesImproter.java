@@ -50,15 +50,17 @@ public class ModulesImproter {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode jsonNode = mapper.readValue(services.getFile(), JsonNode.class);
             jsonNode.forEach(node -> {
-                var module = ModuleInput.newBuilder()
-                        .id(node.get("id").asText())
+                var moduleInput = ModuleInput.newBuilder()
                         .contactButton(node.get("contact_button").asText())
                         .introduction(node.get("introduction").asText())
                         .content(node.get("content").asText())
                         .type(ModuleType.SERVICE)
                         .title(node.get("title").asText())
                         .build();
-                createModule.execute(module);
+
+                var module = createModule.execute(moduleInput);
+                module.setId(Integer.valueOf(node.get("id").asText()));
+                moduleRepository.save(module);
             });
         } catch (Exception e) {
             log.error("could not import", e);
@@ -74,13 +76,14 @@ public class ModulesImproter {
         try {
             JsonNode jsonNode = mapper.readValue(about.getFile(), JsonNode.class);
             jsonNode.forEach(node -> {
-                var module = ModuleInput.newBuilder()
-                        .id(node.get("id").asText())
+                var moduleInput = ModuleInput.newBuilder()
                         .content(node.get("content").asText())
                         .type(ModuleType.INTRODUCTION)
                         .build();
 
-                createModule.execute(module);
+                var module = createModule.execute(moduleInput);
+                module.setId(Integer.valueOf(node.get("id").asText()));
+                moduleRepository.save(module);
             });
         } catch (Exception e) {
             log.error("could not import", e);
@@ -95,16 +98,17 @@ public class ModulesImproter {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode jsonNode = mapper.readValue(articles.getFile(), JsonNode.class);
             jsonNode.forEach(node -> {
-                var module = ModuleInput.newBuilder()
-                        .id(node.get("id").asText())
+                var moduleInput = ModuleInput.newBuilder()
                         .contactButton(node.get("contact_button").asText())
                         .introduction(node.get("introduction").asText())
+                        .tag(node.get("tag").asText())
                         .content(node.get("content").asText())
                         .type(ModuleType.ARTICLE)
                         .title(node.get("title").asText())
                         .build();
-
-                createModule.execute(module);
+                var module = createModule.execute(moduleInput);
+                module.setId(Integer.valueOf(node.get("id").asText()));
+                moduleRepository.save(module);
             });
         } catch (Exception e) {
             log.error("could not import", e);
