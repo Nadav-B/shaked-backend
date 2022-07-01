@@ -25,6 +25,7 @@ public class CreateContact implements Command {
                 .address(data.getAddress())
                 .email(data.getEmail())
                 .createdAt(new Date())
+                .updatedAt(new Date())
                 .fullName(data.getFullName())
                 .build());
 

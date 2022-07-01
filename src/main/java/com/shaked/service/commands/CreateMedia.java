@@ -19,6 +19,7 @@ public class CreateMedia implements Command {
     public Media execute(MultipartFile file) throws IOException {
         return repository.save(Media.builder()
                 .createdAt(new Date())
+                .updatedAt(new Date())
                 .fileName(file.getName())
                 .content(file.getBytes())
                 .build());

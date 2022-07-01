@@ -17,12 +17,14 @@ public class CreateModule implements Command {
 
     public Module execute(ModuleInput data) {
 
+
         return repository.save(Module.builder()
                 .contactButton(data.getContactButton())
                 .content(data.getContent())
                 .title(data.getTitle())
                 .introduction(data.getIntroduction())
                 .createdAt(new Date())
+                .updatedAt(new Date())
                 .tag(data.getTag())
                 .type(data.getType())
                 .mediaId(data.getMediaId())

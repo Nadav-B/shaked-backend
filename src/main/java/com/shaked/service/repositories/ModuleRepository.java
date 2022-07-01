@@ -11,6 +11,10 @@ import java.util.List;
 public interface ModuleRepository extends CrudRepository<Module, Integer> {
     @Override
     List<Module> findAll();
+
     List<Module> findAllByType(ModuleType moduleType);
+
+    Boolean existsByType(ModuleType moduleType);
+
 
 }

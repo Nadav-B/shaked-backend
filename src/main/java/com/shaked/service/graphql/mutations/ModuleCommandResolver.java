@@ -39,6 +39,7 @@ public class ModuleCommandResolver {
     @DgsMutation
     @Secured("ROLE_ADMIN")
     public Module saveModule(@InputArgument ModuleInput data) {
+        log.info(data.toString());
         if (data.getId() != null ) {
             return ((UpdateModule) commands.get(Operation.UPDATE_MODULE)).execute(data);
         } else {

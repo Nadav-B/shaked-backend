@@ -1,5 +1,6 @@
 package com.shaked.service;
 
+import com.shaked.service.importer.ModulesImproter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -14,6 +15,11 @@ public class ShakedServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ShakedServiceApplication.class, args);
+	}
+
+	@Bean
+	public ModulesImproter importJob (ModulesImproter modulesImproter){
+		return modulesImproter;
 	}
 
 	@Bean

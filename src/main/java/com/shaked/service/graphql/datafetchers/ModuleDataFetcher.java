@@ -26,13 +26,13 @@ public class ModuleDataFetcher {
 
     @DgsQuery(field = "module")
     public CompletableFuture<Module> getModule(@InputArgument ModuleUniqueInput where, DgsDataFetchingEnvironment env) {
-        var dataLoader = env.<Long, Module>getDataLoader(ModuleDataLoader.class);
-        return dataLoader.load(Long.valueOf(where.getId()));
+        var dataLoader = env.<Integer, Module>getDataLoader(ModuleDataLoader.class);
+        return dataLoader.load(Integer.valueOf(where.getId()));
     }
 
     @DgsQuery(field = "modules")
     public List<Module> getModules(@InputArgument ModuleWhereInput where) {
-        if (where.getType() != null) return repository.findAllByType(where.getType());
+        if (where !=null && where.getType() != null) return repository.findAllByType(where.getType());
         return repository.findAll().stream().toList();
 
     }
