@@ -16,7 +16,12 @@ gradlew clean test
 ```
 - Run Service (Docker-Compose Services vorher starten)
 ```bash
-- gradlew bootRun
+gradlew bootRun
+``` 
+
+- running docker 
+```bash
+docker-compose up
 ``` 
 
 ### Tech-Stack
